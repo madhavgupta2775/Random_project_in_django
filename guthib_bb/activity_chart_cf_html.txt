@@ -1,0 +1,381 @@
+<script data-nocturne="true"> $(function () {
+        function renderCalendar(fromDate, toDate, strictRange) {
+            if (toDate === undefined || fromDate === undefined) {
+                fromDate = new Date();
+                fromDate.setMonth(fromDate.getMonth() - 12);
+                toDate = new Date();
+            }
+
+            $('#userActivityGraph').empty().calendar_yearview_blocks({
+                data: {
+                    "2023-01-08": {
+                        items: [
+                            4
+                        ]
+                    }, 
+                    "2022-11-01": {
+                        items: [
+                            4
+                        ]
+                    }, 
+                    "2022-12-12": {
+                        items: [
+                            4
+                        ]
+                    }, 
+                    "2022-10-30": {
+                        items: [
+                            4
+                        ]
+                    }, 
+                    "2022-12-11": {
+                        items: [
+                            3
+                        ]
+                    }, 
+                    "2023-02-18": {
+                        items: [
+                            2
+                        ]
+                    }, 
+                    "2022-12-06": {
+                        items: [
+                            2
+                        ]
+                    }, 
+                    "2022-12-05": {
+                        items: [
+                            4
+                        ]
+                    }, 
+                    "2022-12-03": {
+                        items: [
+                            1
+                        ]
+                    }, 
+                    "2022-12-08": {
+                        items: [
+                            4
+                        ]
+                    }, 
+                    "2022-12-07": {
+                        items: [
+                            4
+                        ]
+                    }, 
+                    "2022-10-28": {
+                        items: [
+                            2
+                        ]
+                    }, 
+                    "2023-01-15": {
+                        items: [
+                            3
+                        ]
+                    }, 
+                    "2023-02-28": {
+                        items: [
+                            3
+                        ]
+                    }, 
+                    "2022-11-30": {
+                        items: [
+                            1
+                        ]
+                    }, 
+                    "2023-02-25": {
+                        items: [
+                            4
+                        ]
+                    }, 
+                    "2022-12-02": {
+                        items: [
+                            1
+                        ]
+                    }, 
+                    "2022-12-01": {
+                        items: [
+                            4
+                        ]
+                    }, 
+                    "2022-11-26": {
+                        items: [
+                            2
+                        ]
+                    }, 
+                    "2022-11-27": {
+                        items: [
+                            4
+                        ]
+                    }, 
+                    "2022-11-25": {
+                        items: [
+                            4
+                        ]
+                    }, 
+                    "2023-03-02": {
+                        items: [
+                            3
+                        ]
+                    }, 
+                    "2023-03-01": {
+                        items: [
+                            3
+                        ]
+                    }, 
+                    "2022-11-28": {
+                        items: [
+                            1
+                        ]
+                    }, 
+                    "2022-11-29": {
+                        items: [
+                            1
+                        ]
+                    }, 
+                    "2023-01-21": {
+                        items: [
+                            3
+                        ]
+                    }, 
+                    "2023-01-26": {
+                        items: [
+                            1
+                        ]
+                    }, 
+                    "2023-01-27": {
+                        items: [
+                            4
+                        ]
+                    }, 
+                    "2023-03-05": {
+                        items: [
+                            2
+                        ]
+                    }, 
+                    "2023-01-25": {
+                        items: [
+                            3
+                        ]
+                    }, 
+                    "2023-03-04": {
+                        items: [
+                            4
+                        ]
+                    }, 
+                    "2022-11-22": {
+                        items: [
+                            4
+                        ]
+                    }, 
+                    "2022-11-23": {
+                        items: [
+                            1
+                        ]
+                    }, 
+                    "2022-11-20": {
+                        items: [
+                            4
+                        ]
+                    }, 
+                    "2023-01-29": {
+                        items: [
+                            3
+                        ]
+                    }, 
+                    "2022-12-27": {
+                        items: [
+                            3
+                        ]
+                    }, 
+                    "2022-11-19": {
+                        items: [
+                            1
+                        ]
+                    }, 
+                    "2023-02-02": {
+                        items: [
+                            1
+                        ]
+                    }, 
+                    "2023-02-01": {
+                        items: [
+                            1
+                        ]
+                    }, 
+                    "2022-11-17": {
+                        items: [
+                            3
+                        ]
+                    }, 
+                    "2022-11-18": {
+                        items: [
+                            4
+                        ]
+                    }, 
+                    "2022-12-20": {
+                        items: [
+                            2
+                        ]
+                    }, 
+                    "2023-02-06": {
+                        items: [
+                            2
+                        ]
+                    }, 
+                    "2022-11-11": {
+                        items: [
+                            4
+                        ]
+                    }, 
+                    "2023-02-09": {
+                        items: [
+                            4
+                        ]
+                    }, 
+                    "2022-11-12": {
+                        items: [
+                            2
+                        ]
+                    }, 
+                    "2023-02-08": {
+                        items: [
+                            4
+                        ]
+                    }, 
+                    "2023-02-07": {
+                        items: [
+                            4
+                        ]
+                    }, 
+                    "2022-12-21": {
+                        items: [
+                            1
+                        ]
+                    }, 
+                    "2022-12-17": {
+                        items: [
+                            2
+                        ]
+                    }, 
+                    "2022-11-04": {
+                        items: [
+                            2
+                        ]
+                    }, 
+                    "2022-12-16": {
+                        items: [
+                            4
+                        ]
+                    }, 
+                    "2022-11-05": {
+                        items: [
+                            2
+                        ]
+                    }, 
+                    "2022-12-15": {
+                        items: [
+                            2
+                        ]
+                    }, 
+                    "2022-11-02": {
+                        items: [
+                            3
+                        ]
+                    }, 
+                    "2022-11-03": {
+                        items: [
+                            4
+                        ]
+                    }, 
+                    "2022-11-08": {
+                        items: [
+                            1
+                        ]
+                    }, 
+                    "2022-11-09": {
+                        items: [
+                            1
+                        ]
+                    }, 
+                    "2022-12-19": {
+                        items: [
+                            2
+                        ]
+                    }, 
+                    "2022-11-06": {
+                        items: [
+                            4
+                        ]
+                    }, 
+                    "2022-11-07": {
+                        items: [
+                            3
+                        ]
+                    }
+                },
+                start_monday: false,
+                always_show_tooltip: false,
+                month_names: ['Jan', 'Feb', 'Mar',
+                    'Apr', 'May', 'Jun',
+                    'Jul', 'Aug', 'Sep',
+                    'Oct', 'Nov', 'Dec'],
+                day_names: ['Mon', "Wed", "Fri", "Sun"],
+                colors: {
+                    'default': '#EBEDF0',
+                    1: '#91DA9E',
+                    2: '#40C463',
+                    3: '#30A14E',
+                    4: '#216E39'
+                },
+                prettify_date: function (date) {
+                    const tokens = date.split("-");
+                    return tokens[1] + '/' + tokens[2] + '/' + tokens[0];
+                },
+                format_tip: function (date, items) {
+                    return "{0} <br />".formatString(date);
+                },
+                from_date: fromDate,
+                to_date: toDate,
+                strict_range: strictRange
+            });
+        }
+
+        renderCalendar();
+
+        $("._UserActivityFrame_selector select[name=showPrivateActivity]").change(function () {
+            $.post("/data/user/nannu/activity", {
+                action: "changeSettings",
+                showPrivateActivity: $(this).val()
+            }, function (response) {
+                if (response.success === "true") {
+                    Codeforces.showMessage("Settings have been saved")
+                }
+            });
+
+            return false;
+        });
+
+        function yearChangeHandle(yearStr) {
+            if (yearStr) {
+                const year = parseInt(yearStr, 10);
+                const toDate = new Date();
+                toDate.setFullYear(year);
+                toDate.setMonth(11); // 0 - Jan, so 11 - Dec
+                toDate.setDate(31);
+
+                const fromDate = new Date();
+                fromDate.setFullYear(year);
+                fromDate.setMonth(0);
+                fromDate.setDate(1);
+
+                renderCalendar(fromDate, toDate, true);
+            } else {
+                renderCalendar();
+            }
+        }
+
+        $("._UserActivityFrame_selector select[name=yearSelect]").change(function () {
+            yearChangeHandle($(this).val());
+        });
+}); </script>
