@@ -38,32 +38,6 @@ Total 13 (delta 1), reused 0 (delta 0), pack-reused 0
 remote: Resolving deltas: 100% (1/1), completed with 1 local object.
 To https://github.com/madhavgupta2775/Random_project_in_django.git
    62881ab..ff08b7f  main -> main
-(ven_v) madhav@madhav-VivoBook-ASUSLaptop-X513UA-KM513UA:~/pron/I_love_rust/guthib_bb$ git add . and commit -m "readme ver2.0"
-error: unknown switch
-usage: git add [<options>] [--] <pathspec>...
-
-    -n, --dry-run         dry run
-    -v, --verbose         be verbose
-
-    -i, --interactive     interactive picking
-    -p, --patch           select hunks interactively
-    -e, --edit            edit current diff and apply
-    -f, --force           allow adding otherwise ignored files
-    -u, --update          update tracked files
-    --renormalize         renormalize EOL of tracked files (implies -u)
-    -N, --intent-to-add   record only the fact that the path will be added later
-    -A, --all             add changes from all tracked and untracked files
-    --ignore-removal      ignore paths removed in the working tree (same as --no-all)
-    --refresh             don't add, only refresh the index
-    --ignore-errors       just skip files which cannot be added because of errors
-    --ignore-missing      check if - even missing - files are ignored in dry run
-    --sparse              allow updating entries outside of the sparse-checkout cone
-    --chmod (+|-)x        override the executable bit of the listed files
-    --pathspec-from-file <file>
-                          read pathspec from file
-    --pathspec-file-nul   with --pathspec-from-file, pathspec elements are separated with NUL character
-
-'
 (ven_v) madhav@madhav-VivoBook-ASUSLaptop-X513UA-KM513UA:~/pron/I_love_rust/guthib_bb$ git add . && git commit -m "readme ver2.0 commit try 2"
 [main f42e47e] readme ver2.0 commit try 2
  1 file changed, 24 insertions(+), 1 deletion(-)
@@ -151,72 +125,6 @@ madhav@madhav-VivoBook-ASUSLaptop-X513UA-KM513UA:~/pron/I_love_rust/guthib_bb$ c
 madhav@madhav-VivoBook-ASUSLaptop-X513UA-KM513UA:~/pron/I_love_rust$ ls
 guthib_bb  ven_v
 madhav@madhav-VivoBook-ASUSLaptop-X513UA-KM513UA:~/pron/I_love_rust$ source ven_v/bin/activate
-(ven_v) madhav@madhav-VivoBook-ASUSLaptop-X513UA-KM513UA:~/pron/I_love_rust$ cd guthib_bb/
-(ven_v) madhav@madhav-VivoBook-ASUSLaptop-X513UA-KM513UA:~/pron/I_love_rust/guthib_bb$ ls
-activity_chart_cf_html.txt      db.sqlite3  manage.py  readme.md
-activity_chart_github_html.txt  guthib_bb   memo
-(ven_v) madhav@madhav-VivoBook-ASUSLaptop-X513UA-KM513UA:~/pron/I_love_rust/guthib_bb$ python3 manage.py makemigrations
-Traceback (most recent call last):
-  File "/home/madhav/pron/I_love_rust/guthib_bb/manage.py", line 22, in <module>
-    main()
-  File "/home/madhav/pron/I_love_rust/guthib_bb/manage.py", line 18, in main
-    execute_from_command_line(sys.argv)
-  File "/usr/lib/python3/dist-packages/django/core/management/__init__.py", line 419, in execute_from_command_line
-    utility.execute()
-  File "/usr/lib/python3/dist-packages/django/core/management/__init__.py", line 395, in execute
-    django.setup()
-  File "/usr/lib/python3/dist-packages/django/__init__.py", line 24, in setup
-    apps.populate(settings.INSTALLED_APPS)
-  File "/usr/lib/python3/dist-packages/django/apps/registry.py", line 114, in populate
-    app_config.import_models()
-  File "/usr/lib/python3/dist-packages/django/apps/config.py", line 301, in import_models
-    self.models_module = import_module(models_module_name)
-  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
-    return _bootstrap._gcd_import(name[level:], package, level)
-  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
-  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
-  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
-  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
-  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
-  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
-  File "/home/madhav/pron/I_love_rust/guthib_bb/memo/models.py", line 7, in <module>
-    class Post(models.Model):
-  File "/home/madhav/pron/I_love_rust/guthib_bb/memo/models.py", line 12, in Post
-    author = models.ForignKey(User, on_delete=models.CASCADE)
-AttributeError: module 'django.db.models' has no attribute 'ForignKey'. Did you mean: 'ForeignKey'?
-(ven_v) madhav@madhav-VivoBook-ASUSLaptop-X513UA-KM513UA:~/pron/I_love_rust/guthib_bb$ python manage.py makemigrations
-Command 'python' not found, did you mean:
-  command 'python3' from deb python3
-  command 'python' from deb python-is-python3
-(ven_v) madhav@madhav-VivoBook-ASUSLaptop-X513UA-KM513UA:~/pron/I_love_rust/guthib_bb$ python3 manage.py makemigrations
-Traceback (most recent call last):
-  File "/home/madhav/pron/I_love_rust/guthib_bb/manage.py", line 22, in <module>
-    main()
-  File "/home/madhav/pron/I_love_rust/guthib_bb/manage.py", line 18, in main
-    execute_from_command_line(sys.argv)
-  File "/usr/lib/python3/dist-packages/django/core/management/__init__.py", line 419, in execute_from_command_line
-    utility.execute()
-  File "/usr/lib/python3/dist-packages/django/core/management/__init__.py", line 395, in execute
-    django.setup()
-  File "/usr/lib/python3/dist-packages/django/__init__.py", line 24, in setup
-    apps.populate(settings.INSTALLED_APPS)
-  File "/usr/lib/python3/dist-packages/django/apps/registry.py", line 114, in populate
-    app_config.import_models()
-  File "/usr/lib/python3/dist-packages/django/apps/config.py", line 301, in import_models
-    self.models_module = import_module(models_module_name)
-  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
-    return _bootstrap._gcd_import(name[level:], package, level)
-  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
-  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
-  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
-  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
-  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
-  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
-  File "/home/madhav/pron/I_love_rust/guthib_bb/memo/models.py", line 7, in <module>
-    class Post(models.Model):
-  File "/home/madhav/pron/I_love_rust/guthib_bb/memo/models.py", line 12, in Post
-    author = models.ForignKey(User, on_delete=models.CASCADE)
-AttributeError: module 'django.db.models' has no attribute 'ForignKey'. Did you mean: 'ForeignKey'?
 (ven_v) madhav@madhav-VivoBook-ASUSLaptop-X513UA-KM513UA:~/pron/I_love_rust/guthib_bb$ python3 manage.py makemigrations
 Migrations for 'memo':
   memo/migrations/0001_initial.py
