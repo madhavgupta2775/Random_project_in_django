@@ -39,7 +39,7 @@ remote: Resolving deltas: 100% (1/1), completed with 1 local object.
 To https://github.com/madhavgupta2775/Random_project_in_django.git
    62881ab..ff08b7f  main -> main
 (ven_v) madhav@madhav-VivoBook-ASUSLaptop-X513UA-KM513UA:~/pron/I_love_rust/guthib_bb$ git add . and commit -m "readme ver2.0"
-error: unknown switch `m'
+error: unknown switch
 usage: git add [<options>] [--] <pathspec>...
 
     -n, --dry-run         dry run
@@ -63,6 +63,7 @@ usage: git add [<options>] [--] <pathspec>...
                           read pathspec from file
     --pathspec-file-nul   with --pathspec-from-file, pathspec elements are separated with NUL character
 
+'
 (ven_v) madhav@madhav-VivoBook-ASUSLaptop-X513UA-KM513UA:~/pron/I_love_rust/guthib_bb$ git add . && git commit -m "readme ver2.0 commit try 2"
 [main f42e47e] readme ver2.0 commit try 2
  1 file changed, 24 insertions(+), 1 deletion(-)
@@ -249,3 +250,214 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> User.objects.filter(username='viole').first()
 <User: viole>
 >>> 
+
+
+
+
+(ven_v) madhav@madhav-VivoBook-ASUSLaptop-X513UA-KM513UA:~/pron/I_love_rust/guthib_bb$ python3 manage.py shell
+Python 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> user = User.objects.filter(username='viole').first()
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/code.py", line 90, in runcode
+    exec(code, self.locals)
+  File "<console>", line 1, in <module>
+NameError: name 'User' is not defined
+>>> User.objects.all()
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/code.py", line 90, in runcode
+    exec(code, self.locals)
+  File "<console>", line 1, in <module>
+NameError: name 'User' is not defined
+>>> from memo.models import Post
+>>> from django.contrib.auth.models import User
+>>> user = User.objects.filter(username='viole').first
+>>> usre
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/code.py", line 90, in runcode
+    exec(code, self.locals)
+  File "<console>", line 1, in <module>
+NameError: name 'usre' is not defined
+>>> user
+<bound method QuerySet.first of <QuerySet [<User: viole>]>>
+>>> user.id
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/code.py", line 90, in runcode
+    exec(code, self.locals)
+  File "<console>", line 1, in <module>
+AttributeError: 'function' object has no attribute 'id'
+>>> user
+<bound method QuerySet.first of <QuerySet [<User: viole>]>>
+>>> user = User.objects.filter(username='viole').first()
+>>> user
+<User: viole>
+>>> user.id
+1
+>>> user.pk
+1
+>>> user = User.objects.get(id=1)
+>>> user
+<User: viole>
+>>> Post.objects.all()
+<QuerySet []>
+>>> post_1 = Post(title='memo 1', content='TODO for random_project: 1. Make only those posts visible to the user which he has created.', author=user, date_due= 2023-03-12 23:50:00)
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/code.py", line 63, in runsource
+    code = self.compile(source, filename, symbol)
+  File "/usr/lib/python3.10/codeop.py", line 153, in __call__
+    return _maybe_compile(self.compiler, source, filename, symbol)
+  File "/usr/lib/python3.10/codeop.py", line 70, in _maybe_compile
+    compiler(source + "\n", filename, symbol)
+  File "/usr/lib/python3.10/codeop.py", line 118, in __call__
+    codeob = compile(source, filename, symbol, self.flags, True)
+  File "<console>", line 1
+    post_1 = Post(title='memo 1', content='TODO for random_project: 1. Make only those posts visible to the user which he has created.', author=user, date_due= 2023-03-12 23:50:00)
+                                                                                                                                                                     ^
+SyntaxError: leading zeros in decimal integer literals are not permitted; use an 0o prefix for octal integers
+>>> post_1 = Post(title='memo 1', content='TODO for random_project: 1. Make only those posts visible to the user which he has created.', author=user, date_due='2023-03-12 23:50:00')
+>>> Post.objects.all()
+<QuerySet []>
+>>> post_1.save()
+/usr/lib/python3/dist-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Post.date_due received a naive datetime (2023-03-12 23:50:00) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+>>> Post.objects.all()
+<QuerySet [<Post: Post object (1)>]>
+>>> exit()
+(ven_v) madhav@madhav-VivoBook-ASUSLaptop-X513UA-KM513UA:~/pron/I_love_rust/guthib_bb$ python manage.py shell
+Command 'python' not found, did you mean:
+  command 'python3' from deb python3
+  command 'python' from deb python-is-python3
+(ven_v) madhav@madhav-VivoBook-ASUSLaptop-X513UA-KM513UA:~/pron/I_love_rust/guthib_bb$ python3 manage.py shell
+Python 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from memo.models import Post
+>>> from django.contrib.auth.models import User
+>>> Post.objects.all()
+<QuerySet [<Post: memo 1>]>
+>>> user = User.objects.filter(username='viole').first()
+>>> user
+<User: viole>
+>>> post_2 = Post(title='memo 2', content='lmao ded', author_id = user.id, date_due = '2023-03-12 23:50:59')
+>>> post_2.save()
+/usr/lib/python3/dist-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Post.date_due received a naive datetime (2023-03-12 23:50:59) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+>>> Post.objects.all()
+<QuerySet [<Post: memo 1>, <Post: memo 2>]>
+>>> post = Post.objects.first()
+>>> post.content
+'TODO for random_project: 1. Make only those posts visible to the user which he has created.'
+>>> post.date_posted
+datetime.datetime(2023, 3, 12, 8, 8, 36, 828047, tzinfo=<UTC>)
+>>> post.date_due
+datetime.datetime(2023, 3, 12, 23, 50, tzinfo=<UTC>)
+>>> post.author
+<User: viole>
+>>> post.author.email
+'guptamadhav2775@gmail.com'
+>>> lmao
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/code.py", line 90, in runcode
+    exec(code, self.locals)
+  File "<console>", line 1, in <module>
+NameError: name 'lmao' is not defined
+>>>  user.post_get
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/code.py", line 63, in runsource
+    code = self.compile(source, filename, symbol)
+  File "/usr/lib/python3.10/codeop.py", line 153, in __call__
+    return _maybe_compile(self.compiler, source, filename, symbol)
+  File "/usr/lib/python3.10/codeop.py", line 70, in _maybe_compile
+    compiler(source + "\n", filename, symbol)
+  File "/usr/lib/python3.10/codeop.py", line 118, in __call__
+    codeob = compile(source, filename, symbol, self.flags, True)
+  File "<console>", line 1
+    user.post_get
+IndentationError: unexpected indent
+>>> user.post_set
+<django.db.models.fields.related_descriptors.create_reverse_many_to_one_manager.<locals>.RelatedManager object at 0x7f01ca070fa0>
+>>> user.post_set.all()
+<QuerySet [<Post: memo 1>, <Post: memo 2>]>
+>>> exit()
+(ven_v) madhav@madhav-VivoBook-ASUSLaptop-X513UA-KM513UA:~/pron/I_love_rust/guthib_bb$ python3 manage.py runserver
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 12, 2023 - 08:22:24
+Django version 3.2.12, using settings 'guthib_bb.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+Not Found: /
+[12/Mar/2023 08:22:28] "GET / HTTP/1.1" 404 2167
+Not Found: /favicon.ico
+[12/Mar/2023 08:22:28] "GET /favicon.ico HTTP/1.1" 404 2218
+[12/Mar/2023 08:22:32] "GET /memo/ HTTP/1.1" 200 3909
+[12/Mar/2023 08:22:32] "GET /static/memo/main.css HTTP/1.1" 304 0
+[12/Mar/2023 08:25:48] "GET /memo/ HTTP/1.1" 200 3885
+Internal Server Error: /memo/
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/lib/python3/dist-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/madhav/pron/I_love_rust/guthib_bb/memo/views.py", line 26, in home
+    return render(request, 'memo/home.html', context)
+  File "/usr/lib/python3/dist-packages/django/shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/usr/lib/python3/dist-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/usr/lib/python3/dist-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/usr/lib/python3/dist-packages/django/template/backends/django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/usr/lib/python3/dist-packages/django/template/engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "/usr/lib/python3/dist-packages/django/template/engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/usr/lib/python3/dist-packages/django/template/loaders/base.py", line 29, in get_template
+    return Template(
+  File "/usr/lib/python3/dist-packages/django/template/base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/usr/lib/python3/dist-packages/django/template/base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "/usr/lib/python3/dist-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/usr/lib/python3/dist-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/lib/python3/dist-packages/django/template/loader_tags.py", line 278, in do_extends
+    nodelist = parser.parse()
+  File "/usr/lib/python3/dist-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/usr/lib/python3/dist-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/lib/python3/dist-packages/django/template/loader_tags.py", line 216, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/usr/lib/python3/dist-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/usr/lib/python3/dist-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/lib/python3/dist-packages/django/template/defaulttags.py", line 817, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "/usr/lib/python3/dist-packages/django/template/base.py", line 449, in parse
+    raise self.error(token, e)
+  File "/usr/lib/python3/dist-packages/django/template/base.py", line 447, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/usr/lib/python3/dist-packages/django/template/base.py", line 563, in compile_filter
+    return FilterExpression(token, self)
+  File "/usr/lib/python3/dist-packages/django/template/base.py", line 662, in __init__
+    raise TemplateSyntaxError("Could not parse the remainder: '%s' "
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: ': "d F Y"' from 'post.date_due|date: "d F Y"'
+[12/Mar/2023 08:27:21] "GET /memo/ HTTP/1.1" 500 177104
+[12/Mar/2023 08:27:55] "GET /memo/ HTTP/1.1" 200 4031
+/home/madhav/pron/I_love_rust/guthib_bb/memo/views.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 12, 2023 - 08:28:47
+Django version 3.2.12, using settings 'guthib_bb.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+[12/Mar/2023 08:28:49] "GET /memo/ HTTP/1.1" 200 4031
