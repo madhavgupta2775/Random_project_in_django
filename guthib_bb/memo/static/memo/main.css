@@ -6,25 +6,33 @@ body {
   }
   
   h1, h2, h3, h4, h5, h6 {
-    color: #ffffff;
+    color: #2f979b;
+  }
+  a {
+    color: #2f979b;
   }
   
   ul {
     margin: 0;
-    background-color: #323536;
-    color: #000000;
+    background-color: #050720;
+    color: #2f979b;
+  }
+
+  .list-group-item {
+    background-color: #050720;
+    font-size: medium;
   }
   
   .bg-steel {
-    background-color: #001b2e;
+    background-color: #050720;
   }
   
   .site-header .navbar-nav .nav-link {
-    color: #d5cbdb;
+    color: #2f979b;
   }
   
   .site-header .navbar-nav .nav-link:hover {
-    color: #ffffff;
+    color: #9841fb;
   }
   
   .site-header .navbar-nav .nav-link.active {
@@ -32,19 +40,19 @@ body {
   }
   
   .content-section {
-    background: #323536;
+    background: #050720;
     padding: 10px 20px;
-    border: 1px solid #ffffff;
+    border: 1px solid #000000;
     border-radius: 3px;
     margin-bottom: 20px;
   }
   
   .article-title {
-    color: #ffffff;
+    color: #2f979b;
   }
   
   a.article-title:hover {
-    color: #428bca;
+    color: #9841fb;
     text-decoration: none;
   }
   
@@ -61,11 +69,11 @@ body {
   .article-metadata {
     padding-bottom: 1px;
     margin-bottom: 4px;
-    border-bottom: 1px solid #e3e3e3
+    border-bottom: 1px solid #ffffff
   }
   
   .article-metadata a:hover {
-    color: #333;
+    color: #9841fb;
     text-decoration: none;
   }
   
