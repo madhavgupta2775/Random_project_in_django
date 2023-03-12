@@ -13,7 +13,7 @@ So I decided to make a net activity chart which combines the activity of website
 
 ### -> have memos for various stuff
 
-A lot of times, I decide a new task for myself but forget about it pretty quickly (like learning rust so that I can become a femboy). Also, it can also be used to write plans for side projects and stuff. 
+A lot of times, I decide a new task for myself but forget about it pretty quickly (like learning rust and hence becoming a femboy). Also, it can also be used to write plans for side projects and stuff. 
 
 ### -> Google login and profile
 
