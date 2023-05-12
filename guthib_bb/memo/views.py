@@ -20,6 +20,7 @@ class PostListView(ListView):
     template_name = 'memo/home.html' # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
     ordering = ['date_due']
+    paginate_by = 5
 
 
 class PostDetailView(DetailView):
@@ -28,7 +29,7 @@ class PostDetailView(DetailView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title', 'content']
+    fields = ['title', 'content', 'date_due']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -37,7 +38,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['title', 'content']
+    fields = ['title', 'content', 'date_due']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
