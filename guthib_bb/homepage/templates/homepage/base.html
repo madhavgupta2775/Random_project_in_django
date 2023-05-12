@@ -12,29 +12,27 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'memo/main.css' %}">
 
-    {% if title %}
+    <!-- {% if title %}
         <title>{{ title }}</title>
     {% else %}
         <title>Random Memo</title>
-    {% endif %}
+    {% endif %} -->
 </head>
 <body>
     <header class="site-header">
         <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
           <div class="container">
-            <a class="navbar-brand mr-4" href="/">Home</a>
+            <a class="navbar-brand mr-4" href="{% url 'home' %}">Home</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarToggle">
               <div class="navbar-nav mr-auto">
-                <a class="nav-item nav-link" href="{% url 'memo_home' %}">Memos</a>
-                <a class="nav-item nav-link" href="{% url 'memo_about' %}">About</a>
+                <a class="nav-item nav-link" href="{% url 'homepage-about' %}">About</a>
               </div>
               <!-- Navbar Right Side -->
               <div class="navbar-nav">
                 {% if user.is_authenticated %}
-                <a class="nav-item nav-link" href="{% url 'post-create' %}">New Memo</a>
                 <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
                 <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
                 {% else %}
@@ -58,19 +56,6 @@
               {% endfor %}
             {% endif %}
             {% block content %}{% endblock %}
-        </div>
-        <div class="col-md-4">
-            <div class="content-section">
-            <h3>Quick Links</h3>
-            <p>
-                <ul class="list-group">
-                <li class="list-group-item">Latest Posts</li>
-                <li class="list-group-item">Announcements</li>
-                <li class="list-group-item">Calendars</li>
-                <li class="list-group-item">etc</li>
-                </ul>
-            </p>
-            </div>
         </div>
         </div>
     </main>
