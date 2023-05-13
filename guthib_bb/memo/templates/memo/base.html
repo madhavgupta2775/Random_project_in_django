@@ -28,8 +28,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarToggle">
               <div class="navbar-nav mr-auto">
-                <a class="nav-item nav-link" href="{% url 'memo_home' %}">Memos</a>
-                <a class="nav-item nav-link" href="{% url 'memo_about' %}">About</a>
+                <a class="nav-item nav-link" href="{% url 'memo_about' %}">About_Memos</a>
               </div>
               <!-- Navbar Right Side -->
               <div class="navbar-nav">
@@ -64,7 +63,7 @@
             <h3>Quick Links</h3>
             <p>
                 <ul class="list-group">
-                <li class="list-group-item">Latest Posts</li>
+                  <a class="list-group-item" href="{% url 'memo_home' %}">Memos</a>
                 <li class="list-group-item">Announcements</li>
                 <li class="list-group-item">Calendars</li>
                 <li class="list-group-item">etc</li>

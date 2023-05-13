@@ -57,6 +57,19 @@
             {% endif %}
             {% block content %}{% endblock %}
         </div>
+        <div class="col-md-4">
+          <div class="content-section">
+          <h3>Quick Links</h3>
+          <p>
+              <ul class="list-group">
+                <a class="list-group-item" href="{% url 'memo_home' %}">Memos</a>
+              <li class="list-group-item">Announcements</li>
+              <li class="list-group-item">Calendars</li>
+              <li class="list-group-item">etc</li>
+              </ul>
+          </p>
+          </div>
+      </div>
         </div>
     </main>
 
