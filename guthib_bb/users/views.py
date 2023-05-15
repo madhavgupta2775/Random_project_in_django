@@ -31,13 +31,13 @@ def profile_update(request, pk):
 
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=user)
-        p_form = ProfileUpdateForm(request.POST, request.FILES, instance=user.profile)
+        p_form = ProfileUpdateForm(request.POST, request.FILES, instance=profile)
 
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
-            messages.success(request, f'Your account has been updated!')
-            return redirect('profile_update', user.profile.pk)
+            messages.success(request, f'Account has been updated!')
+            return redirect('profile_update', pk=pk)
     else:
         u_form = UserUpdateForm(instance=user)
         p_form = ProfileUpdateForm(instance=user.profile)
@@ -48,6 +48,22 @@ def profile_update(request, pk):
         'user': user
     }
     return render(request, 'users/profile_update.html', context)
+
+def profile(request, pk):
+    profile = Profile.objects.get(pk=pk)
+    user = profile.user
+
+    if request.user.is_superuser or user == request.user:
+        update_allow = True
+    else:
+        update_allow = False
+
+    context = {
+        'user': user,
+        'update_allow': update_allow,
+    }
+    return render(request, 'users/profile.html', context)
+
 
 # messages.debug
 # messages.info

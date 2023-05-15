@@ -1,5 +1,4 @@
 {% extends "homepage/base.html" %}
-{% load crispy_forms_tags %}
 {% block content %}
     <div class="content-section">
     <div class="media">
@@ -14,12 +13,14 @@
         {% csrf_token %}
         <fieldset class="form-group">
             <legend class="border-bottom mb-4">Profile Info</legend>
-            {{ u_form|crispy }}
-            {{ p_form|crispy }}
+            <h2>Bio</h2>
+            <p>{{ user.profile.bio }}</p>
         </fieldset>
-        <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Confirm</button>
-        </div>
+        {% if update_allow == True %}
+            <div>
+                <a class="btn btn-outline-info btn-sm mt-1 mb-1" href="{% url 'profile_update' user.profile.pk %}">Update</a>
+            </div>
+        {% endif %}
     </form>
   </div>
 {% endblock content %}
