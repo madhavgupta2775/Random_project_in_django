@@ -41,7 +41,6 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     fields = ['title', 'content', 'date_due']
 
     def form_valid(self, form):
-        print("here")
         # form.instance.author = self.request.user
         return super().form_valid(form)
 
