@@ -25,6 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-quwkdc#t1i$9jg9hteb74-rnj_b@+c2!i7oeh9$ob#spwsx5s!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = False
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -60,7 +61,9 @@ ROOT_URLCONF = 'guthib_bb.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'common/templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
