@@ -29,6 +29,7 @@ SECRET_KEY = 'django-insecure-quwkdc#t1i$9jg9hteb74-rnj_b@+c2!i7oeh9$ob#spwsx5s!
 DEBUG = True
 
 ALLOWED_HOSTS = ['random-project-in-django.onrender.com']
+# ALLOWED_HOSTS = []
 
 
 # Application definition
