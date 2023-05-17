@@ -1,1 +1,1 @@
-djanog-crispy-forms
+djanog-crispy-forms==1.14.0
