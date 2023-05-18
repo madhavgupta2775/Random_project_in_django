@@ -2,6 +2,8 @@ from typing import Optional
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.db import models
+from django.db.models import Q
 from .models import Post
 from django.http import HttpResponse
 
@@ -21,6 +23,14 @@ class PostListView(ListView):
     context_object_name = 'posts'
     ordering = ['date_due']
     paginate_by = 5
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        user = self.request.user
+
+        if user.is_superuser:
+            return queryset  # Superusers can see all memos
+
+        return queryset.filter(models.Q(private=False) | models.Q(author=user))
 
 
 class PostDetailView(DetailView):
@@ -38,7 +48,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['title', 'content', 'date_due']
+    fields = ['title', 'content', 'date_due', 'private']
 
     def form_valid(self, form):
         # form.instance.author = self.request.user
