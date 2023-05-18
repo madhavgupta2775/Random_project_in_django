@@ -113,3 +113,25 @@ body {
   .quick-link .list-group-item::-webkit-scrollbar {
     display: none;
   }
+
+  /* .label {
+    display: inline-block;
+    padding: 1px 4px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: bold;
+    border-style: solid;
+    border-width: 1px;
+    position: absolute;
+    right: 40px;
+  }
+
+  .label-private {
+    border-color: #595962;
+    color: white;
+  }
+
+  .label-public {
+      border-color: #595962;
+      color: white;
+  } */

@@ -1,4 +1,8 @@
 {% extends 'common/base.html' %}
+{% block cssfile %}
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'homepage/main.css' %}">
+{% endblock cssfile %}
 {% block navbar-stuff %}
   <div class="navbar-nav mr-auto">
     <a class="nav-item nav-link" href="{% url 'homepage-about' %}">About</a>
