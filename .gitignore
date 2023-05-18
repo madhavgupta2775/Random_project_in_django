@@ -4,9 +4,10 @@
 __pycache__
 
 # Env
-.env
+*.env
 myvenv/
 ven_v/
+# config.env
 
 # Database
 db.sqlite3
