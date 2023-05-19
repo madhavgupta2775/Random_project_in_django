@@ -8,3 +8,6 @@ def index(request):
 
 def about(request):
     return render(request, 'homepage/about.html', {'title': 'ABOUT'})
+
+def error_page(request, exception=None):
+    return render(request, 'common/error_page.html')

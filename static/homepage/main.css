@@ -1,3 +1,26 @@
+@font-face {
+  font-family: animeace2;
+  src: url(animeace2_reg.ttf);
+}
+
+.error-page
+{
+  font-family: animeace2;
+}
+
+.error-page-bubble
+{
+  position: absolute;
+  left: 128px;
+  top: 35px;
+  color: black;
+  overflow: hidden;
+  border-radius: 50%;
+  width: 234px;
+  height: 108px;
+  /* transform: rotate(355deg); */
+}
+
 body {
     background: #000000;
     color: #ffffff;

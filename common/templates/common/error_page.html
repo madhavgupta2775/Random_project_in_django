@@ -1,0 +1,20 @@
+{% extends 'homepage/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="position-relative error-page">
+        <img class="position-absolute" src="{% static '404_img.png' %}">
+        <div class="error-page-bubble d-flex flex-column text-center justify-content-center">
+            <p class="" style="font-size: 16px">
+                The {{request.path}} page? I've never heard...
+            </p>
+            </div>
+    </div>
+    <!-- <script>
+        document.getElementById("error-message").innerText += window.location.href;
+    </script> -->
+{% endblock content %}
+{% block scripts %}
+<script>
+    //$(".quick-link").remove();
+</script>
+{% endblock %}
