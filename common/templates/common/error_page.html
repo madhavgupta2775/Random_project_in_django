@@ -3,9 +3,9 @@
 {% block content %}
     <div class="position-relative error-page">
         <img class="position-absolute" src="{% static '404_img.png' %}">
-        <div class="error-page-bubble d-flex flex-column text-center justify-content-center">
-            <p class="" style="font-size: 16px">
-                The {{request.path}} page? I've never heard...
+        <div class="error-page-bubble d-flex flex-column justify-content-center">
+            <p id="requestPath" title="{{request.path}}" class="no-scroll" style="font-size: 16px; white-space: nowrap">
+                {{request.path}}
             </p>
             </div>
     </div>
@@ -15,6 +15,42 @@
 {% endblock content %}
 {% block scripts %}
 <script>
-    //$(".quick-link").remove();
+    $(".quick-link").remove();
+    $("#requestPath").bind('mousewheel', function (e) {
+        this.scrollLeft -= e.originalEvent.wheelDelta/12;
+        this.scrollLeft = Math.min(this.scrollLeft, this.scrollWidth);
+        this.scrollLeft = Math.max(this.scrollLeft, 0);
+        
+        return false;
+    });
+
+    // document.getElementById('requestPath').addEventListener('mousedown', mouseDown, false);
+    // document.getElementById('requestPath').addEventListener('touchstart', mouseDown, false);
+    // window.addEventListener('mouseup', mouseUp, false);
+    // window.addEventListener('touchend', mouseUp, false);
+
+    // var mouseStartX = 0;
+
+    // function mouseUp()
+    // {
+    //     window.removeEventListener('mousemove', divMove, true);
+    // }
+
+    // function mouseDown(e){
+    //     div = document.getElementById('requestPath');
+    //     mouseStartX = e.clientX + div.scrollLeft;
+    //     window.addEventListener('mousemove', divMove, true);
+    //     return false;
+    // }
+
+
+    // function divMove (e)
+    // {
+    //     div = document.getElementById('requestPath');
+    //     div.scrollLeft = mouseStartX - e.clientX;
+    //     div.scrollLeft = Math.min(div.scrollLeft, div.scrollWidth);
+    //     div.scrollLeft = Math.max(div.scrollLeft, 0);
+    //     return false;
+    // }
 </script>
 {% endblock %}
