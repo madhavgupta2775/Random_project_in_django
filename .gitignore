@@ -10,7 +10,7 @@ ven_v/
 # config.env
 
 # Database
-db.sqlite3
+*.sqlite3
 
 # Static folder at project root
 # /static/
@@ -35,3 +35,8 @@ $RECYCLE.BIN/
 
 # media
 media/
+
+# Database backup
+db_backups/
+backup.sh
+dbb/

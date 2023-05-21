@@ -24,6 +24,7 @@ from homepage.views import error_page
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('homepage.urls')),
+    path('accounts/', include('allauth.urls')),
     path('register/', user_views.register, name='register'),
     path('user/', include('users.urls')),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),

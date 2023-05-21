@@ -23,3 +23,15 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['image', 'bio']
+
+class AdditionalInfoForm(forms.ModelForm):
+    username = forms.CharField(max_length=150)
+    email = forms.EmailField()
+    password = forms.CharField(widget=forms.PasswordInput)
+
+    # Add any additional fields you need
+
+    def clean(self):
+        cleaned_data = super().clean()
+        # Add any additional validation or cleaning logic if required
+        return cleaned_data
