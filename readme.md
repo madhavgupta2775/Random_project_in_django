@@ -32,53 +32,53 @@ Just to keep track of what's there
 
 ### Pages
 
--> website home, about
+    -> website home, about
 
--> memo home (paginated), memo about
+    -> memo home (paginated), memo about
 
--> memo detail, memo update, memo delete confirm
+    -> memo detail, memo update, memo delete confirm
 
--> register, login, logout
+    -> register, login, logout
 
--> user profiles
+    -> user profiles
 
 ### User
 
--> Registration/login using username and email
+    -> Registration/login using username and email
 
--> Profile
+    -> Profile
 
-    -> email
-    
-    -> username
+        -> email
+        
+        -> username
 
-    -> profile pic
+        -> profile pic
 
-    -> bio
+        -> bio
 
-    -> profile update
+        -> profile update
 
--> Different user levels (normal user and superuser), superuser has extra permissions
+    -> Different user levels (normal user and superuser), superuser has extra permissions
 
 ### Memos
 
--> Create, Update, Delete
+    -> Create, Update, Delete
 
--> memo properties
+    -> memo properties
 
-    -> Title
+        -> Title
 
-    -> Author (Profile link)
+        -> Author (Profile link)
 
-    -> Visibility
+        -> Visibility
 
-    -> date created, date due
+        -> date created, date due
 
 
 ### Custom Frontend
 
--> Error Page (customized image specific to the page)
+    -> Error Page (customized image specific to the page)
 
--> Scroll Bar
+    -> Scroll Bar
 
 
