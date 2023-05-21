@@ -81,4 +81,10 @@ Just to keep track of what's there
 
     -> Scroll Bar
 
+### Other
+    
+    -> Navbar
+
+    -> Quick Links
+
 
