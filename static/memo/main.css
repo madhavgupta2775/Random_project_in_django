@@ -135,3 +135,36 @@ body {
       border-color: #595962;
       color: white;
   }
+
+  /* Firefox */
+  html {
+    scrollbar-color: rgb(21, 21, 24) rgb(46, 46, 46);
+  }
+
+  /* WebKit and Chromiums */
+  ::-webkit-scrollbar {
+    background-color: rgb(21, 21, 24);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgb(46, 46, 46);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(68, 68, 68);
+  }
+
+  ::-webkit-scrollbar-thumb:active {
+    background: rgb(92, 92, 92);
+  }
+
+  .form-control {
+    background-color: #1d2022;
+    color: #ffffff;
+    border-color: #1d2022;
+  }
+
+  .form-control:focus {
+    background-color: #1d2022;
+    color: #ffffff;
+  }

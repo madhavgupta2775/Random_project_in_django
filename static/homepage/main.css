@@ -3,24 +3,21 @@
   src: url(animeace2_reg.ttf);
 }
 
-.error-page
-{
+.error-page {
   font-family: animeace2;
 }
 
-.error-page-bubble
-{
+.error-page-bubble {
   position: relative;
-    left: 220px;
-    top: 48px;
-    color: black;
-    overflow: visible;
-    width: 125px;
+  left: 220px;
+  top: 48px;
+  color: black;
+  overflow: visible;
+  width: 125px;
   /* transform: rotate(355deg); */
 }
 
-.error-page-bubble p
-{
+.error-page-bubble p {
   font-size: 16px;
   font-weight: bold;
   overflow-x: scroll;
@@ -28,8 +25,7 @@
 }
 
 
-.no-scroll
-{
+.no-scroll {
   overflow: scroll;
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
@@ -177,3 +173,36 @@ body {
       border-color: #595962;
       color: white;
   } */
+  
+  /* Firefox */
+html {
+  scrollbar-color: rgb(21, 21, 24) rgb(46, 46, 46);
+}
+
+/* WebKit and Chromiums */
+::-webkit-scrollbar {
+  background-color: rgb(21, 21, 24);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(46, 46, 46);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(68, 68, 68);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: rgb(92, 92, 92);
+}
+
+.form-control {
+  background-color: #1d2022;
+  color: #ffffff;
+  border-color: #1d2022;
+}
+
+.form-control:focus {
+  background-color: #1d2022;
+  color: #ffffff;
+}
