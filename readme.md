@@ -46,6 +46,8 @@ Just to keep track of what's there
 
     -> Registration/login using username and email
 
+    -> Registration/login using google
+
     -> Profile
 
         -> email
