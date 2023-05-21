@@ -15,9 +15,13 @@ So I decided to make a net activity chart which combines the activity of website
 
 A lot of times, I decide a new task for myself but forget about it pretty quickly (like learning rust and hence becoming a femboy). Also, it can also be used to write plans for side projects and stuff. 
 
+upd: done
+
 ### -> Google login and profile
 
 No specific reason for this, just thought of including this so that I can get a better grasp of how this is implemented.
+
+upd: done
 
 ### -> easter eggs
 
