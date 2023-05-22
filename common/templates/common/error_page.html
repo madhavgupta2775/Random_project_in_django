@@ -1,6 +1,7 @@
 {% extends 'homepage/base.html' %}
 {% load static %}
 {% block content %}
+<div class="error-page-container">
     <div class="position-relative error-page">
         <img class="position-absolute" src="{% static '404_img.png' %}">
         <div class="error-page-bubble d-flex flex-column justify-content-center">
@@ -9,13 +10,15 @@
             </p>
         </div>
     </div>
+</div>
     <!-- <script>
         document.getElementById("error-message").innerText += window.location.href;
     </script> -->
 {% endblock content %}
 {% block scripts %}
 <script>
-    $(".quick-link").remove();
+    // $(".quick-link").addClass('col-md-2');
+    // $(".page-content").addClass('col-md-10');
     $("#requestPath").bind('mousewheel', function (e) {
         this.scrollLeft -= e.originalEvent.wheelDelta/12;
         this.scrollLeft = Math.min(this.scrollLeft, this.scrollWidth);

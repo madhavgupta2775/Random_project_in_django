@@ -24,14 +24,14 @@ class ProfileUpdateForm(forms.ModelForm):
         model = Profile
         fields = ['image', 'bio']
 
-class AdditionalInfoForm(forms.ModelForm):
-    username = forms.CharField(max_length=150)
-    email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput)
+# class AdditionalInfoForm(forms.ModelForm):
+#     username = forms.CharField(max_length=150)
+#     email = forms.EmailField()
+#     password = forms.CharField(widget=forms.PasswordInput)
 
-    # Add any additional fields you need
+#     # Add any additional fields you need
 
-    def clean(self):
-        cleaned_data = super().clean()
-        # Add any additional validation or cleaning logic if required
-        return cleaned_data
+#     def clean(self):
+#         cleaned_data = super().clean()
+#         # Add any additional validation or cleaning logic if required
+#         return cleaned_data
