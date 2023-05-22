@@ -19,6 +19,7 @@
 <script>
     // $(".quick-link").addClass('col-md-2');
     $(".page-content").width('1100px');
+    $(".page-content").parent().width('fit-content');
     $(".page-content").height('940px');
     $("#requestPath").bind('mousewheel', function (e) {
         this.scrollLeft -= e.originalEvent.wheelDelta/12;
