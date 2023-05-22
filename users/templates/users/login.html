@@ -13,9 +13,21 @@
                 <button class="btn btn-outline-info" type="submit">Login</button>
             </div>
         </form>
-        <hr>
-        <p>Or login with:</p>
-        <a href="{% provider_login_url 'google' %}" class="btn btn-primary">Google</a>
+        <!-- <hr> -->
+        <!-- <div>
+            <p>Or login with:</p>
+            <a href="{% provider_login_url 'google' %}" class="btn btn-primary">Google</a>
+        </div> -->
+        <!-- <hr> -->
+        
+        <!-- <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans"/> -->
+        <div class="google-login-container">
+            <a href="{% provider_login_url 'google' %}" class="google-login-btn">
+                <div class="google-logo"></div>
+                <span class="btn-text">Sign in with Google</span>
+            </a> 
+        </div>
+
         <div class="border-top pt3">
             <small class="text-muted">
                 Need An Account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>

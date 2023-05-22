@@ -206,3 +206,52 @@ html {
   background-color: #1d2022;
   color: #ffffff;
 }
+
+/* .form-control, .form-control:-moz-autofill {
+  background-color: #1d2022;
+  color: #ffffff;
+  border-color: #1d2022;
+} */
+
+.google-login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.google-login-btn {
+  display: inline-flex;
+  align-items: center;
+  background-color: #050720;
+  color: #2f979b;
+  border: 1px solid #2f979b;
+  border-radius: 5px; 
+  padding: 10px;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.google-login-btn:hover {
+  background-color: #2f979b;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.google-logo {
+  width: 20px;
+  height: 20px;
+  background: url(https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg) no-repeat;
+  background-size: cover;
+  display: inline-block;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.btn-text {
+  vertical-align: middle;
+}
+
+
+/* @import url(https://fonts.googleapis.com/css?family=Roboto:500); */
