@@ -1,6 +1,7 @@
 {% extends "homepage/base.html" %}
 {% load crispy_forms_tags %}
 {% load socialaccount %}
+{% load static %}
 {% block content %}
     <div class="content-section">
         <form method="POST">
@@ -13,12 +14,20 @@
                 <button class="btn btn-outline-info" type="submit">Sign Up</button>
             </div>
         </form>
+
+        <div class="divider">
+            <span class="divider-line"></span>
+            <span class="divider-text">Or</span>
+            <span class="divider-line"></span>
+        </div>
+
         <div class="google-login-container">
             <a href="{% provider_login_url 'google' %}" class="google-login-btn">
-                <div class="google-logo"></div>
+                <img src="{% static 'homepage/google_logo.svg' %}" alt="Google Logo" class="google-logo">
                 <span class="btn-text">Sign in with Google</span>
             </a> 
         </div>
+
         <div class="border-top pt3">
             <small class="text-muted">
                 Already Have An Account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>

@@ -151,28 +151,6 @@ body {
   .quick-link .list-group-item::-webkit-scrollbar {
     display: none;
   }
-
-  /* .label {
-    display: inline-block;
-    padding: 1px 4px;
-    border-radius: 10px;
-    font-size: 10px;
-    font-weight: bold;
-    border-style: solid;
-    border-width: 1px;
-    position: absolute;
-    right: 40px;
-  }
-
-  .label-private {
-    border-color: #595962;
-    color: white;
-  }
-
-  .label-public {
-      border-color: #595962;
-      color: white;
-  } */
   
   /* Firefox */
 html {
@@ -207,12 +185,6 @@ html {
   color: #ffffff;
 }
 
-/* .form-control, .form-control:-moz-autofill {
-  background-color: #1d2022;
-  color: #ffffff;
-  border-color: #1d2022;
-} */
-
 .google-login-container {
   display: flex;
   align-items: center;
@@ -242,7 +214,7 @@ html {
 .google-logo {
   width: 20px;
   height: 20px;
-  background: url(https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg) no-repeat;
+  /* background: url(https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg) no-repeat; */
   background-size: cover;
   display: inline-block;
   margin-right: 10px;
@@ -253,5 +225,20 @@ html {
   vertical-align: middle;
 }
 
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
 
-/* @import url(https://fonts.googleapis.com/css?family=Roboto:500); */
+.divider-line {
+  flex-grow: 1;
+  height: 1px;
+  background-color: #ccc;
+}
+
+.divider-text {
+  margin: 0 10px;
+  color: #ccc;
+}
+
