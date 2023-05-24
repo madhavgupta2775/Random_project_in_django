@@ -50,6 +50,7 @@ body {
     border: 1px solid #000000;
     border-radius: 3px;
     margin-bottom: 20px;
+    overflow: scroll;
   }
   
   .article-title {
@@ -167,4 +168,15 @@ body {
   .form-control:focus {
     background-color: #1d2022;
     color: #ffffff;
+  }
+
+  .no-scroll {
+    overflow: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scroll::-webkit-scrollbar {
+    display: none;
   }
