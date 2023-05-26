@@ -10,7 +10,6 @@
   <!-- Navbar Right Side -->
   <div class="navbar-nav">
     {% if request.user.is_authenticated %}
-    <a class="nav-item nav-link" href="{% url 'post-create' %}">New Memo</a>
     <a class="nav-item nav-link" href="{% url 'profile' request.user.profile.pk %}">Profile</a>
     <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
     {% else %}
@@ -19,5 +18,17 @@
     {% endif %}
   </div>
 {% endblock navbar-stuff %}
+
+{% block sidebar %}
+    <div class="content-section no-scroll">
+        <h3>Memo Sidebar</h3>
+          <p>
+              <ul class="list-group">
+                <a class="list-group-item" href="{% url 'archived-memo' %}">Memo Archive</a>
+                <a class="list-group-item" href="{% url 'post-create' %}">Create Memo</a>
+              </ul>
+          </p>
+    </div>
+{% endblock sidebar %}
 
 
