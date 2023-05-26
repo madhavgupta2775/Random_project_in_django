@@ -22,7 +22,7 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['image', 'bio']
+        fields = ['image', 'bio', 'show_email']
 
 class AdditionalInfoForm(forms.ModelForm):
     username = forms.CharField(max_length=150)
