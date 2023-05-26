@@ -1,7 +1,7 @@
 {% extends "memo/base.html" %}
 {% block content %}
     {% for post in posts %}
-        <!-- {% if not post.private or request.user.is_superuser or post.author == request.user and not post.is_archived %} -->
+        <!-- {% if not post.private or request.user.is_superuser or post.author == request.user %} -->
         <article class="media content-section no-scroll">
             <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
             <div class="media-body">
