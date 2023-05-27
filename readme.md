@@ -54,7 +54,7 @@ Just to keep track of what's there
 
     -> Profile
 
-        -> email
+        -> email (show/hide)
         
         -> username
 
@@ -80,6 +80,9 @@ Just to keep track of what's there
 
         -> date created, date due
 
+    -> memo Archive
+
+    -> SideBar
 
 ### Custom Frontend
 
