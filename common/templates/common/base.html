@@ -22,48 +22,50 @@
 </head>
 <body>
     {% block matrix %}{% endblock %}
-    <header class="site-header">
-        <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
-          <div class="container">
-            <a class="navbar-brand mr-4" href="{% url 'home' %}">Home</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarToggle">
-                {% block navbar-stuff %}{% endblock %}
+    <div id="d-fade" class="{% block d-fade-class %}{% endblock %}">
+      <header class="site-header">
+          <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+            <div class="container">
+              <a class="navbar-brand mr-4" href="{% url 'home' %}">Home</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarToggle">
+                  {% block navbar-stuff %}{% endblock %}
+              </div>
             </div>
+          </nav>
+      </header>
+      
+      <main role="main" class="container">
+          <div class="row">
+          <div class="col-md-8 page-content">
+              {% if messages %}
+                {% for message in messages %}
+                  <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                  </div>
+                {% endfor %}
+              {% endif %}
+              {% block content %}{% endblock %}
           </div>
-        </nav>
-    </header>
-    
-    <main role="main" class="container">
-        <div class="row">
-        <div class="col-md-8 page-content">
-            {% if messages %}
-              {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}">
-                  {{ message }}
-                </div>
-              {% endfor %}
-            {% endif %}
-            {% block content %}{% endblock %}
-        </div>
-        <div class="col-md-4 quick-link">
-          <div class="content-section no-scroll">
-          <h3>Quick Links</h3>
-          <p>
-              <ul class="list-group">
-                <a class="list-group-item" href="{% url 'memo_home' %}">Memos</a>
-              <li class="list-group-item">Announcements</li>
-              <li class="list-group-item">Calendars</li>
-              <li class="list-group-item">etc</li>
-              </ul>
-          </p>
+          <div class="col-md-4 quick-link">
+            <div class="content-section no-scroll">
+            <h3>Quick Links</h3>
+            <p>
+                <ul class="list-group">
+                  <a class="list-group-item" href="{% url 'memo_home' %}">Memos</a>
+                <li class="list-group-item">Announcements</li>
+                <li class="list-group-item">Calendars</li>
+                <li class="list-group-item">etc</li>
+                </ul>
+            </p>
+            </div>
+            {% block sidebar %}{% endblock %}
           </div>
-          {% block sidebar %}{% endblock %}
-        </div>
-        </div>
-    </main>
+          </div>
+      </main>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS --> 

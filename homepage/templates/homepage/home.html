@@ -61,6 +61,9 @@ setInterval(draw, 3);
     // Fade out the matrix
 setTimeout(function() {
     $(canvas).fadeOut(1000);
+    $("#d-fade").removeClass("d-none");
 }, 1000);
 </script>
 {% endblock %}
+
+{% block d-fade-class %}d-none{% endblock %}
