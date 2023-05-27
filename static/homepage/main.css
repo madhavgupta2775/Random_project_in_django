@@ -243,4 +243,9 @@ html {
   color: #ccc;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 

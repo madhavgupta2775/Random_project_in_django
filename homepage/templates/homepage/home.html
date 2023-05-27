@@ -1,7 +1,9 @@
 {% extends "homepage/base.html" %}
+{% load static %}
 {% block content %}
 <h1>Website HOME Page</h1>
-<div>
-    This is the homepage of the website.
+<div class="homepage-greeting">
+    <p>This is the homepage of the website.</p>
+    <img src="{% static 'homepage/home_img.png' %}">
 </div>
 {% endblock content %}
