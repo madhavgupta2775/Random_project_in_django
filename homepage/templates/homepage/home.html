@@ -27,21 +27,44 @@ for (var i = 0; i < columns; i++) {
     drops[i] = 1;
 }
 
+var codecolor = getRandomColor();
+
 // Setting up the draw function
 function draw() {
     ctx.fillStyle = 'rgba(0, 0, 0, .1)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = codecolor;
     for (var i = 0; i < drops.length; i++) {
-    var text = letters[Math.floor(Math.random() * letters.length)];
-    // ctx.fillStyle = '#0f0';
-    ctx.fillStyle =  '#9841fb'; 
-    ctx.font = fontSize + 'px monospace'; // Set the font size
-    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-    drops[i]++;
-    if (drops[i] * fontSize > canvas.height && Math.random() > .95) {
-        drops[i] = 0;
+        var text = letters[Math.floor(Math.random() * letters.length)];
+        // ctx.fillStyle = '#0f0';
+        // ctx.fillStyle =  getRandomColor(); 
+        // print(ctx.fillStyle);
+        ctx.font = fontSize + 'px monospace'; // Set the font size
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        drops[i]++;
+        if (drops[i] * fontSize > canvas.height && Math.random() > .95) {
+            drops[i] = 0;
+        }
     }
+}
+
+// Function to generate a random color visible on a black background
+function getRandomColor() {
+    var color = 'rgb('; // Start with the basic building block for a color
+    var sum = 0;
+    for(var i = 0; i < 3; i++) {
+        var brightness = Math.floor(Math.random() * 255); // Random brightness value between 0 and 255
+        sum += brightness;
+        if(i == 3 && sum < 128) { // If the sum of the brightness values is less than 128, make the color brighter
+            brightness = 255 - sum; // Make sure the color is visible on a black background
+        }
+        color += brightness;
+        if(i < 2) {
+            color += ',';
+        }
     }
+    color += ')';
+    return color;
 }
 
 // Loop the animation
