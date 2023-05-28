@@ -4,7 +4,7 @@
 {% block matrix %}
 <canvas class="fixed-top" style="z-index: 1031"></canvas>
 
-<script>
+<script>    
     // Initialising the canvas
 var canvas = document.querySelector('canvas'),
     ctx = canvas.getContext('2d');
@@ -14,11 +14,11 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 // Setting up the letters
-var letters = '01';
+var letters = 'LOADING';
 letters = letters.split('');
 
 // Setting up the columns
-var fontSize = 10,
+var fontSize = 15,
     columns = canvas.width / fontSize;
 
 // Setting up the drops
@@ -34,6 +34,7 @@ function draw() {
     for (var i = 0; i < drops.length; i++) {
     var text = letters[Math.floor(Math.random() * letters.length)];
     ctx.fillStyle = '#0f0';
+    ctx.font = fontSize + 'px monospace'; // Set the font size
     ctx.fillText(text, i * fontSize, drops[i] * fontSize);
     drops[i]++;
     if (drops[i] * fontSize > canvas.height && Math.random() > .95) {
