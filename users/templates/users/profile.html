@@ -8,6 +8,7 @@
             {% if user.profile.show_email %}
                 <p class="text-secondary">{{ user.email }}</p>
             {% endif %}
+            <a href="{% url 'user_memos' pk=user.pk %}">Memos posted</a>
             <!-- <p class="text-secondary">{{ user.profile.bio }}</p> -->
         </div>
     </div>

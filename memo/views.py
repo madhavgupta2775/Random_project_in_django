@@ -33,13 +33,33 @@ class PostListView(ListView):
 
         return queryset.filter(models.Q(private=False) | models.Q(author=user))
     
+
+class UserMemosView(PostListView):
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        user_pk = self.kwargs['pk']
+        if self.request.user.is_superuser or self.request.user.pk == user_pk:
+            return queryset.filter(author__pk=user_pk)
+        return queryset.filter(models.Q(private=False) & models.Q(author__pk=user_pk))
+    
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     user_pk = self.kwargs['pk']
+    #     if self.request.user.is_superuser or self.request.user.pk == user_pk:
+    #         memos_count = Post.objects.filter(author__pk=user_pk).count()
+    #     else:
+    #         memos_count = Post.objects.filter(author__pk=user_pk, private=False).count()
+    #     context['memos_count'] = memos_count
+    #     return context
+        
+    
 class ArchivedPostListView(PostListView):
     # template_name = 'memo/archived_memos.html'
 
     def get_queryset(self):
         queryset = super().get_queryset(True)
         user = self.request.user
-        print(queryset)
+        # print(queryset)
         if user.is_superuser:
             return queryset # Superusers can see all memos
         return queryset.filter(models.Q(private=False) | models.Q(author=user))

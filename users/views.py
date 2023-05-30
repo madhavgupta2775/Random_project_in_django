@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, AdditionalInfoForm
 from .models import User, Profile
+# from memo.views import UserMemosView
 from django.core.exceptions import PermissionDenied
 from allauth.socialaccount.models import SocialAccount
 
@@ -85,7 +86,7 @@ def profile_update(request, pk):
 def profile(request, pk):
     profile = Profile.objects.get(pk=pk)
     user = profile.user
-
+    # memos_count = UserMemosView.get_context_data(user).get('memos_count')
     if request.user.is_superuser or user == request.user:
         update_allow = True
     else:
@@ -94,6 +95,7 @@ def profile(request, pk):
     context = {
         'user': user,
         'update_allow': update_allow,
+        # 'memos_count': memos_count
     }
     return render(request, 'users/profile.html', context)
 
