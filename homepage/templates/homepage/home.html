@@ -18,7 +18,7 @@ var letters = 'LOADING';
 letters = letters.split('');
 
 // Setting up the columns
-var fontSize = 15,
+var fontSize = 20,
     columns = canvas.width / fontSize;
 
 // Setting up the drops
@@ -33,14 +33,17 @@ var codecolor = getRandomColor();
 function draw() {
     ctx.fillStyle = 'rgba(0, 0, 0, .1)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = codecolor;
+    ctx.fillStyle = codecolor + ')';
     for (var i = 0; i < drops.length; i++) {
         var text = letters[Math.floor(Math.random() * letters.length)];
-        // ctx.fillStyle = '#0f0';
-        // ctx.fillStyle =  getRandomColor(); 
-        // print(ctx.fillStyle);
+        var opacity = 1 - (drops[i] * 0.05); // Calculate the opacity based on the position of the text
+        var glowColor = codecolor + ',' + opacity + ')';
+        ctx.save();
+        ctx.shadowBlur = 120; // Set the blur radius for the glow effect
+        ctx.shadowColor = glowColor; // Set the color of the glow effect        
         ctx.font = fontSize + 'px monospace'; // Set the font size
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        ctx.restore();
         drops[i]++;
         if (drops[i] * fontSize > canvas.height && Math.random() > .95) {
             drops[i] = 0;
@@ -55,7 +58,7 @@ function getRandomColor() {
     for(var i = 0; i < 3; i++) {
         var brightness = Math.floor(Math.random() * 255); // Random brightness value between 0 and 255
         sum += brightness;
-        if(i == 3 && sum < 128) { // If the sum of the brightness values is less than 128, make the color brighter
+        if(i == 3 && sum < 250) { // If the sum of the brightness values is less than 250, make the color brighter
             brightness = 255 - sum; // Make sure the color is visible on a black background
         }
         color += brightness;
@@ -63,12 +66,12 @@ function getRandomColor() {
             color += ',';
         }
     }
-    color += ')';
+    // color += ')';
     return color;
 }
 
 // Loop the animation
-setInterval(draw, 3);
+setInterval(draw, 8);
 </script>
 {% endblock %}
 
@@ -87,7 +90,7 @@ setInterval(draw, 3);
 setTimeout(function() {
     $(canvas).fadeOut(1000);
     $("#d-fade").removeClass("d-none");
-}, 1000);
+}, 1200);
 </script>
 {% endblock %}
 
