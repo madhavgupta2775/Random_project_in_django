@@ -1,4 +1,5 @@
 {% extends "memo/base.html" %}
+{% load static %}
 {% block content %}
     {% if object.private and not request.user.is_superuser and object.author != request.user %}
         <p>This memo is private.</p>
@@ -19,7 +20,25 @@
         <h2 class="article-title">{{ object.title }}</h2>
         <p class="article-content">{{ object.content }}</p>
         <small class="text-muted">{{ object.date_due }}</small>
-        </div>
+        </div>          
     </article>
+    <form id="comment-form" action="{% url 'create_comment' %}" method="post">
+        {% csrf_token %}
+        <!-- Add fields for comment content, e.g., a textarea or input -->
+        <textarea name="content" required></textarea>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="comment-section">
+        {% for comment in comments %}
+        <div class="comment">
+          <p>{{ comment.content }}</p>
+          <p>Posted by {{ comment.author }} on {{ comment.date_posted }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    
     {% endif %}
+
+    <script src="{% static 'memo/comments.js' %}"></script>
+    
 {% endblock content %}

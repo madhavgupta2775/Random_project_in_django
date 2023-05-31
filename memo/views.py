@@ -1,12 +1,14 @@
 from typing import Optional
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.db import models
 from django.db.models import Q
 from .models import Post
-from django.http import HttpResponse
-from .forms import PostUpdateForm, PostCreateForm
+from django.http import HttpResponse, JsonResponse
+from django.views.decorators.http import require_POST
+from .forms import PostUpdateForm, PostCreateForm, CommentCreateForm
+from django.contrib import messages
 
 # Create your views here.
 
@@ -107,3 +109,29 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 def about(request):
     return render(request, 'memo/about.html', {'title': 'About'})
+
+@require_POST
+def create_comment(request):
+    if request.method == 'POST':
+        form = CommentCreateForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.author = request.user
+            comment.save()
+            messages.success(request, f'Comment has been added successfully.')
+
+            # Prepare the data to be returned in the JSON response
+            data = {
+                'content': comment.content,
+                'author': comment.author.username,
+                'date_posted': comment.date_posted.strftime('%Y-%m-%d %H:%M:%S'),
+                'memo': comment.memo.pk,
+            }
+            
+            return JsonResponse(data)
+        else:
+            # Handle form validation errors
+            errors = form.errors.as_json()
+            return JsonResponse({'error': errors}, status=400)
+    
+    return redirect('post_detail', pk=comment.memo.pk)  # Redirect to the memo detail page
