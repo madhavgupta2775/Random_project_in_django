@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Any, Dict, Optional
 from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -68,6 +68,10 @@ class ArchivedPostListView(PostListView):
 
 class PostDetailView(DetailView):
     model = Post
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context['comments'] = self.object.comments.all().order_by('-date_posted')
+        return context
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):

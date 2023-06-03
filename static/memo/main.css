@@ -180,3 +180,22 @@ body {
   .no-scroll::-webkit-scrollbar {
     display: none;
   }
+
+  .comment-box {
+    resize: none;
+    background: transparent;
+    border: 0;
+    border-bottom: 2px solid #1d2022;
+    min-height: 2em;
+  }
+  .comment-box:focus {
+    background: transparent;
+    box-shadow: none;
+    border-bottom-color: #ffffff;
+  }
+  .comment-author-img {
+    height: 20px;
+    width: 20px;
+    margin-right: 8px;
+    object-fit: cover;
+  }
