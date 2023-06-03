@@ -18,25 +18,25 @@ commentForm.addEventListener('submit', (e) => {
     },
     body: formData,
   })
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.error) {
-        // Handle form validation errors
-        console.error(data.error);
-      } else {
-        // Clear the comment content in the form
-        commentForm.elements.content.value = '';
-        
-        // Update the comment section with the newly created comment
-        const commentHtml = `
-          <div class="comment">
-            <p>${data.content}</p>
-            <p>Posted by ${data.author} on ${data.date_posted}</p>
-          </div>
-        `;
-        commentSection.insertAdjacentHTML('beforeend', commentHtml);
-      }
-    })
+    // .then((response) => response.json())
+    // .then((data) => {
+    //   if (data.error) {
+    //     // Handle form validation errors
+    //     console.error(data.error);
+    //   } else {
+    //     // Clear the comment content in the form
+    //     commentForm.elements.content.value = '';
+
+    //     // Update the comment section with the newly created comment
+    //     const commentHtml = `
+    //       <div class="comment">
+    //         <p>${data.content}</p>
+    //         <p>Posted by ${data.author} on ${data.date_posted}</p>
+    //       </div>
+    //     `;
+    //     commentSection.insertAdjacentHTML('beforeend', commentHtml);
+    //   }
+    // })
     .catch((error) => {
       console.error(error);
     });

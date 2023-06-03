@@ -95,5 +95,7 @@ Just to keep track of what's there
     -> Navbar
 
     -> Quick Links
+    
+    -> Homepage Loading Animation
 
 

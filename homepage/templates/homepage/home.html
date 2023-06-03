@@ -40,7 +40,8 @@ function draw() {
         var glowColor = codecolor + ',' + opacity + ')';
         ctx.save();
         ctx.shadowBlur = 150; // Set the blur radius for the glow effect
-        ctx.shadowColor = glowColor; // Set the color of the glow effect        
+        ctx.shadowColor = glowColor; // Set the color of the glow effect    
+        // fontSize = Math.floor(Math.random() * 2) + 20; // Random font size between 10 and 30    
         ctx.font = fontSize + 'px monospace'; // Set the font size
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
         ctx.restore();
