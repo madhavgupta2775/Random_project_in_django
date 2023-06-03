@@ -30,20 +30,22 @@
         
         <div class="form-group">
             <div class="input-group">
-                <textarea id="comment-box" rows="1" name="content" class="form-control comment-box" placeholder="Add a comment..." required></textarea>
+                <textarea id="comment-box" rows="1" name="content" class="form-control comment-box" placeholder=" Add a comment..." required></textarea>
             </div>
-            <div class="d-flex justify-content-end"><button type="submit" class="btn">comment</button></div>
+            <div class="d-flex m-2 justify-content-end">
+                <button type="submit" class="btn submit-btn">comment</button>
+            </div>
         </div>
-        <!-- <textarea name="content" class="form-control" placeholder="Add a comment..." required></textarea>
-        <button type="submit" class="btn">comment</button> -->
     </form>
     <div id="comment-section">
         {% for comment in comments %}
         <div class="comment content-section no-scroll">
-            <img class="rounded-circle comment-author-img" src="{{ comment.author.profile.image.url }}">
-            <a class="mr-2" href="{% url 'profile' comment.author.profile.pk %}">{{ comment.author }}</a>
-            <p class="article-content">{{ comment.content }}</p>
-            <small class="text-muted">Posted by {{ comment.author }} on {{ comment.date_posted }}</small>
+            <div class="article-metadata">
+                <img class="rounded-circle comment-author-img" src="{{ comment.author.profile.image.url }}">
+                <a class="mr-2" href="{% url 'profile' comment.author.profile.pk %}">{{ comment.author }}</a>
+                <small class="text-muted">{{ comment.date_posted|timesince }} ago</small>
+            </div>
+            <p style="margin: 5px">{{ comment.content }}</p>
         </div>
         {% endfor %}
     </div>

@@ -194,8 +194,23 @@ body {
     border-bottom-color: #ffffff;
   }
   .comment-author-img {
-    height: 20px;
-    width: 20px;
-    margin-right: 8px;
+    height: 25px;
+    width: 25px;
+    margin-right: 3px;
+    margin-bottom: 3px;
     object-fit: cover;
+  }
+
+  .submit-btn {
+    background-color: #050720;
+    color: #2f979b;
+    border: 1px solid #2f979b;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .submit-btn:hover {
+    background-color: #2f979b;
+    color: #ffffff;
+    text-decoration: none;
   }

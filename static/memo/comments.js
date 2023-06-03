@@ -42,40 +42,6 @@ commentForm.addEventListener('submit', (e) => {
     });
 });
 
-// same as above but in jquery
-// $.ajax({
-//   url: commentForm.action,
-//   type: 'POST',
-//   headers: {
-//     'Content-Type': 'application/x-www-form-urlencoded',
-//     'X-CSRFToken': getCookie('csrftoken'), // Include the CSRF token
-//   },
-//   data: formData,
-//   success: (data) => {
-//     if (data.error) {
-//       // Handle form validation errors
-//       console.error(data.error);
-//     } else {
-//       // Clear the comment content in the form
-//       commentForm.elements.content.value = '';
-
-//       // Update the comment section with the newly created comment
-//       const commentHtml = `
-//         <div class="comment">
-//           <p>${data.content}</p>
-//           <p>Posted by ${data.author} on ${data.date_posted}</p>
-//         </div>
-//       `;
-//       commentSection.insertAdjacentHTML('beforeend', commentHtml);
-//     }
-//   },
-//   error: (error) => {
-//     console.error(error);
-//   },
-// });
-
-// });
-
 // Helper function to get the value of a cookie
 function getCookie(name) {
   const cookieValue = document.cookie.match(`(^|;)\\s*${name}=([^;]*)`);
