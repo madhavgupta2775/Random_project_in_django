@@ -70,6 +70,12 @@ Just to keep track of what's there
 
     -> Create, Update, Delete
 
+    -> Comments
+        
+        -> currently not threaded, though threaded comments are in development.
+
+        -> Update and Delete featurs are also in development.
+
     -> memo properties
 
         -> Title
