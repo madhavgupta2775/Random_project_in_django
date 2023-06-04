@@ -40,3 +40,6 @@ media/
 db_backups/
 backup.sh
 dbb/
+
+activity_chart_cf_html.txt
+activity_chart_github_html.txt
