@@ -57,7 +57,7 @@ class UserMemosView(PostListView):
     
 class ArchivedPostListView(PostListView):
     # template_name = 'memo/archived_memos.html'
-
+    ordering = ['-date_due']
     def get_queryset(self):
         queryset = super().get_queryset(True)
         user = self.request.user
