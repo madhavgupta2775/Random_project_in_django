@@ -39,9 +39,8 @@ function draw() {
         var opacity = 1 - (drops[i] * 0.05); // Calculate the opacity based on the position of the text
         var glowColor = codecolor + ',' + opacity + ')';
         ctx.save();
-        ctx.shadowBlur = 150; // Set the blur radius for the glow effect
+        ctx.shadowBlur = 100; // Set the blur radius for the glow effect
         ctx.shadowColor = glowColor; // Set the color of the glow effect    
-        // fontSize = Math.floor(Math.random() * 2) + 20; // Random font size between 10 and 30    
         ctx.font = fontSize + 'px monospace'; // Set the font size
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
         ctx.restore();
@@ -59,15 +58,15 @@ function getRandomColor() {
     for(var i = 0; i < 3; i++) {
         var brightness = Math.floor(Math.random() * 255); // Random brightness value between 0 and 255
         sum += brightness;
-        if(i == 3 && sum < 320) { // If the sum of the brightness values is less than 250, make the color brighter
-            brightness = 325 - sum; // Make sure the color is visible on a black background
+        if(i == 2 && sum < 360) { // If the sum of the brightness values is less than 360, make the color brighter
+            brightness = Math.min(190, 360 + brightness - sum);
+            sum += brightness;
         }
         color += brightness;
         if(i < 2) {
             color += ',';
         }
     }
-    // color += ')';
     return color;
 }
 
