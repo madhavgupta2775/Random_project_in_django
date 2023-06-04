@@ -17,7 +17,7 @@ class PostCreateForm(forms.ModelForm):
         model = Post
         fields = ['title', 'content', 'date_due', 'private']
 
-class CommentCreateForm(forms.ModelForm):
+class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['content', 'memo']

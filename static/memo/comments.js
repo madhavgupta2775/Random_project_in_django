@@ -27,14 +27,32 @@ commentForm.addEventListener('submit', (e) => {
         // Clear the comment content in the form
         commentForm.elements.content.value = '';
 
-        // Update the comment section with the newly created comment
-        const commentHtml = `
-          <div class="comment">
-            <p>${data.content}</p>
-            <p>Posted by ${data.author} on ${data.date_posted}</p>
+        // Create a new alert element
+        const alertHtml = `
+          <div class="alert alert-success" role="alert">
+            Comment has been added successfully.
           </div>
         `;
-        commentSection.insertAdjacentHTML('beforeend', commentHtml);
+        const alertElement = document.createElement('div');
+        alertElement.innerHTML = alertHtml;
+
+        // Insert the alert element before the comment section
+        commentSection.parentNode.insertBefore(alertElement, commentSection);
+
+        // Get the comment template
+        const commentTemplate = document.getElementById('comment-template').innerHTML;
+
+        // Create a new DOM element from the comment template
+        const commentElement = document.createElement('div');
+        commentElement.innerHTML = commentTemplate;
+
+        // Populate the comment data into the comment element
+        commentElement.querySelector('.text-muted').textContent = `0 seconds ago`;
+        commentElement.querySelector('p').textContent = data.content;
+
+        // Insert the new comment at the second child of commentSection
+        commentSection.insertBefore(commentElement, commentSection.children[1]);
+        //commentSection.insertBefore(commentElement, commentSection.firstChild);
       }
     })
     .catch((error) => {

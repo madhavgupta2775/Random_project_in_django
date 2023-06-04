@@ -7,7 +7,7 @@ from django.db.models import Q
 from .models import Post
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.http import require_POST
-from .forms import PostUpdateForm, PostCreateForm, CommentCreateForm
+from .forms import PostUpdateForm, PostCreateForm, CommentForm
 from django.contrib import messages
 
 # Create your views here.
@@ -117,17 +117,16 @@ def about(request):
 @require_POST
 def create_comment(request):
     if request.method == 'POST':
-        form = CommentCreateForm(request.POST)
+        form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
             comment.author = request.user
             comment.save()
-            messages.success(request, f'Comment has been added successfully.')
+            # messages.success(request, f'Comment has been added successfully.')
 
             # Prepare the data to be returned in the JSON response
             data = {
                 'content': comment.content,
-                'author': comment.author.username,
                 'date_posted': comment.date_posted.strftime('%Y-%m-%d %H:%M:%S'),
                 'memo': comment.memo.pk,
             }
@@ -140,27 +139,27 @@ def create_comment(request):
     
     return redirect('post_detail', pk=comment.memo.pk)  # Redirect to the memo detail page
 
-# def delete_comment(request, comment_id):
-#     comment = get_object_or_404(comment, id=comment_id)
-#     if request.user == comment.author or request.user.is_superuser:
-#         comment.delete()
-#         messages.success(request, 'Comment has been deleted successfully.')
-#     else:
-#         messages.error(request, 'You are not allowed to delete this comment.')
-#     return redirect('post_detail', pk=comment.memo.pk)
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(comment, id=comment_id)
+    if request.user == comment.author or request.user.is_superuser:
+        comment.delete()
+        messages.success(request, 'Comment has been deleted successfully.')
+    else:
+        messages.error(request, 'You are not allowed to delete this comment.')
+    return redirect('post_detail', pk=comment.memo.pk)
 
-# def update_comment(request, comment_id):
-#     comment = get_object_or_404(comment, id=comment_id)
-#     if request.user == comment.author:
-#         if request.method == 'POST':
-#             form = CommentCreateForm(request.POST, instance=comment)
-#             if form.is_valid():
-#                 form.save()
-#                 messages.success(request, 'Comment has been updated successfully.')
-#                 return redirect('post_detail', pk=comment.memo.pk)
-#         else:
-#             form = CommentCreateForm(instance=comment)
-#         return render(request, 'memo/update_comment.html', {'form': form, 'comment': comment})
-#     else:
-#         messages.error(request, 'You are not allowed to update this comment.')
-#         return redirect('post_detail', pk=comment.memo.pk)
+def update_comment(request, comment_id):
+    comment = get_object_or_404(comment, id=comment_id)
+    if request.user == comment.author:
+        if request.method == 'POST':
+            form = CommentForm(request.POST, instance=comment)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Comment has been updated successfully.')
+                return redirect('post_detail', pk=comment.memo.pk)
+        else:
+            form = CommentForm(instance=comment)
+        return render(request, 'memo/update_comment.html', {'form': form, 'comment': comment})
+    else:
+        messages.error(request, 'You are not allowed to update this comment.')
+        return redirect('post_detail', pk=comment.memo.pk)
