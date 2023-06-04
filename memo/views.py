@@ -1,5 +1,5 @@
 from typing import Any, Dict, Optional
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.db import models
@@ -139,3 +139,28 @@ def create_comment(request):
             return JsonResponse({'error': errors}, status=400)
     
     return redirect('post_detail', pk=comment.memo.pk)  # Redirect to the memo detail page
+
+# def delete_comment(request, comment_id):
+#     comment = get_object_or_404(comment, id=comment_id)
+#     if request.user == comment.author or request.user.is_superuser:
+#         comment.delete()
+#         messages.success(request, 'Comment has been deleted successfully.')
+#     else:
+#         messages.error(request, 'You are not allowed to delete this comment.')
+#     return redirect('post_detail', pk=comment.memo.pk)
+
+# def update_comment(request, comment_id):
+#     comment = get_object_or_404(comment, id=comment_id)
+#     if request.user == comment.author:
+#         if request.method == 'POST':
+#             form = CommentCreateForm(request.POST, instance=comment)
+#             if form.is_valid():
+#                 form.save()
+#                 messages.success(request, 'Comment has been updated successfully.')
+#                 return redirect('post_detail', pk=comment.memo.pk)
+#         else:
+#             form = CommentCreateForm(instance=comment)
+#         return render(request, 'memo/update_comment.html', {'form': form, 'comment': comment})
+#     else:
+#         messages.error(request, 'You are not allowed to update this comment.')
+#         return redirect('post_detail', pk=comment.memo.pk)

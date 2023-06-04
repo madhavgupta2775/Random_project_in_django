@@ -10,16 +10,16 @@
         <div class="article-metadata">
             <a class="mr-2" href="{% url 'profile' post.author.profile.pk %}">{{ object.author }}</a>
             <small class="text-muted">{{ object.date_posted|date:"d F Y" }}</small>
-            {% if request.user == object.author or request.user.is_superuser %}
+        </div>
+        <h2 class="article-title">{{ object.title }}</h2>
+        <p class="article-content">{{ object.content }}</p>
+        <small class="text-muted">due on {{ object.date_due }}</small>
+        {% if request.user == object.author or request.user.is_superuser %}
             <div>
                     <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
                     <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
             </div>       
-            {% endif %}
-        </div>
-        <h2 class="article-title">{{ object.title }}</h2>
-        <p class="article-content">{{ object.content }}</p>
-        <small class="text-muted">{{ object.date_due }}</small>
+        {% endif %}
         </div>          
     </article>
     <form id="comment-form" action="{% url 'create_comment' %}" method="post">
@@ -40,13 +40,15 @@
     <div id="comment-section">
         <h3>Comments</h3>
         {% for comment in comments %}
-        <div class="comment content-section no-scroll">
+        <div class="media content-section no-scroll">
+            <img class="rounded-circle comment-author-img" src="{{ comment.author.profile.image.url }}">
+            <div class="media-body">
             <div class="article-metadata">
-                <img class="rounded-circle comment-author-img" src="{{ comment.author.profile.image.url }}">
-                <a class="mr-2" href="{% url 'profile' comment.author.profile.pk %}">{{ comment.author }}</a>
+                <a class="mr-2" style="font-size: 15px;" href="{% url 'profile' comment.author.profile.pk %}">{{ comment.author }}</a>
                 <small class="text-muted">{{ comment.date_posted|timesince }} ago</small>
             </div>
             <p style="margin: 5px">{{ comment.content }}</p>
+            </div>
         </div>
         {% endfor %}
     </div>
