@@ -181,6 +181,11 @@ body {
     display: none;
   }
 
+  .comment
+  {
+    overflow: visible;
+  }
+
   .comment-box {
     resize: none;
     background: transparent;
@@ -214,3 +219,58 @@ body {
     color: #ffffff;
     text-decoration: none;
   }
+
+  .showLeft {
+    /* background-color: #0d77b6 !important;
+    border: 1px solid #0d77b6 !important; */
+    text-shadow: none !important;
+    color: #fff !important;
+    padding: 10px;
+  }
+  
+  .icons .dot {
+    background-color: #fff;
+    height: 7px;
+    width: 7px;
+    border-radius: 50%;
+    margin-right: 5px;
+  }
+  
+  .btn-right {
+    right: 0.4em;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 120px;
+    border-radius: 0.25rem;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content button {
+    color: black;
+    text-decoration: none;
+    min-height: 40px;
+    display: block;
+    width: 100%;
+  }
+
+  .dropdown-content button:hover {
+    background-color: #bebebe;
+  }
+  
+  .show {
+    display: block;
+  }
+  

@@ -77,7 +77,9 @@ $(".update-button").click(function (e) {
   // the above line gives Cannot read properties of null (reading 'querySelector')
 
   $(".comment").removeClass("d-none");
+  $(".comment").addClass("d-flex");
   comment.classList.add('d-none');
+  comment.classList.remove('d-flex');
 
   // insert the comment update form instead of the comment being updated and pass the comment id to the form
 
@@ -96,6 +98,7 @@ $("#cancel-update-button").click(function (e) {
   commentUpdateForm.style.display = 'none';
   const comment = document.getElementById(`comment-${commentUpdateForm.querySelector("input[name='comment_id']").value}`);
   comment.classList.remove('d-none');
+  comment.classList.add('d-flex');
 });
 
 // Attach an event listener to the comment update form submission
@@ -125,6 +128,7 @@ commentUpdateForm.addEventListener('submit', (e) => {
         commentUpdateForm.style.display = 'none';
         const comment = document.getElementById(`comment-${data.id}`);
         comment.classList.remove('d-none');
+        comment.classList.add('d-flex');
 
         // update the comment content
         comment.querySelector('p').textContent = data.content;
@@ -135,6 +139,26 @@ commentUpdateForm.addEventListener('submit', (e) => {
     });
 });
 
+
+function showDropdown(event) {
+  event.stopPropagation(); // Stop event bubbling
+
+  var dropdown = event.currentTarget.nextElementSibling;
+  dropdown.classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    for (var i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
 
 
 // Helper function to get the value of a cookie
