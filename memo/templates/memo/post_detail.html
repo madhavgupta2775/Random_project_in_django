@@ -37,6 +37,20 @@
             </div>
         </div>
     </form>
+    <form id="comment-update-form" action="{% url 'update_comment' %}" method="post" style="display: none;">
+        {% csrf_token %}
+        <input type="hidden" name="memo" value="{{ object.pk }}">
+        <input type="hidden" name="comment_id" value="">
+        <div class="form-group">
+            <div class="input-group">
+                <textarea id="comment-box" name="content" class="form-control comment-box">{{ object.content }}</textarea>
+            </div>
+            <div class="d-flex m-2 justify-content-end">
+                <button type="submit" class="btn submit-btn">Update</button>
+                <button type="button" id="cancel-update-button" class="btn btn-secondary cancel-btn">Cancel</button>
+            </div>
+        </div>
+    </form>
     <!-- Hidden template for new comments -->
     <div id="comment-template" style="display: none;">
         <div class="media content-section no-scroll">
@@ -52,8 +66,8 @@
     </div>
     <div id="comment-section">
         <h3>Comments</h3>
-        {% for comment in comments %}
-        <div class="media content-section no-scroll">
+        {% for comment in comments %} 
+        <div class="media content-section no-scroll comment" id="comment-{{comment.pk}}">
             <img class="rounded-circle comment-author-img" src="{{ comment.author.profile.image.url }}">
             <div class="media-body">
             <div class="article-metadata">
@@ -62,17 +76,24 @@
             </div>
             <p style="margin: 5px">{{ comment.content }}</p>
             </div>
+            {% if request.user == comment.author or request.user.is_superuser %}
+                <div>
+                    <button type="button" class="btn btn-primary update-button" id="updatecomment-{{comment.pk}}">Update</button>
+                    <!-- <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'delete_comment' comment.id %}">Delete</a> -->
+                </div>
+            {% endif %}
         </div>
         {% endfor %}
     </div>
     
     {% endif %}
 
-    <script src="{% static 'memo/comments.js' %}"></script>
+    
     
 {% endblock content %}
 
 {% block scripts %}
+<script src="{% static 'memo/comments.js' %}"></script>
     <script>
         $("#comment-box").each(function () {
             this.setAttribute("style", "height:" + (this.scrollHeight) + "px;overflow-y:hidden;");
