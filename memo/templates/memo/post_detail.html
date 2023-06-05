@@ -60,7 +60,7 @@
                 <a class="mr-2" style="font-size: 15px;" href="{% url 'profile' request.user.profile.pk %}">{{ request.user.username }}</a>
                 <small class="text-muted">0 seconds ago</small>
             </div>
-            <p style="margin: 5px; white-space: pre;"></p>
+            <p style="margin: 5px; white-space: pre-wrap;"></p>
             </div>
             {% if request.user == comment.author or request.user.is_superuser %}
                 <!-- Three dot menu -->
@@ -90,7 +90,7 @@
                 <a class="mr-2" style="font-size: 15px;" href="{% url 'profile' comment.author.profile.pk %}">{{ comment.author }}</a>
                 <small class="text-muted">{{ comment.date_posted|timesince }} ago</small>
             </div>
-            <p style="margin: 5px; white-space: pre;">{{ comment.content }}</p>
+            <p style="margin: 5px; white-space: pre-wrap;">{{ comment.content }}</p>
             </div>
             {% if request.user == comment.author or request.user.is_superuser %}
                 <!-- Three dot menu -->
