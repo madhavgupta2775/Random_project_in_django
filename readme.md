@@ -61,13 +61,17 @@ Just to keep track of what's there
 
     -> Comments
         
+        -> no redirects/page refresh needed, requests are sent in the background
+
         -> author
 
         -> time since posted
 
         -> currently not threaded, though threaded comments are in development.
 
-        -> Update and Delete featurs are also in development.
+        -> Update
+
+        -> Delete ( Currently in development )
 
     -> memo properties
 
