@@ -126,6 +126,7 @@ def create_comment(request):
             # Prepare the data to be returned in the JSON response
             data = {
                 'content': comment.content,
+                'id': comment.pk,
                 'date_posted': comment.date_posted.strftime('%Y-%m-%d %H:%M:%S'),
                 'memo': comment.memo.pk,
             }

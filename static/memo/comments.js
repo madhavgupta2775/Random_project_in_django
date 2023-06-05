@@ -43,16 +43,13 @@ commentForm.addEventListener('submit', (e) => {
         const commentTemplate = document.getElementById('comment-template').innerHTML;
 
         // Create a new DOM element from the comment template
-        const commentElement = document.createElement('div');
-        commentElement.innerHTML = commentTemplate;
-
-        // Populate the comment data into the comment element
-        commentElement.querySelector('.text-muted').textContent = `0 seconds ago`;
-        commentElement.querySelector('p').textContent = data.content;
-
+        const addedComment = $(commentTemplate);
+        addedComment.find("p").text(data.content);
+        addedComment.attr("id", `comment-${data.id}`);
+        addedComment.find(".update-button").attr("id", `updatecomment-${data.id}`);
+        
         // Insert the new comment at the second child of commentSection
-        commentSection.insertBefore(commentElement, commentSection.children[1]);
-        //commentSection.insertBefore(commentElement, commentSection.firstChild);
+        commentSection.insertBefore(addedComment[0], commentSection.children[1]);
       }
     })
     .catch((error) => {
@@ -66,30 +63,30 @@ const commentUpdateForm = document.getElementById('comment-update-form');
 const commentUpdateSection = document.getElementById('comment-section');
 
 // Attach an event listener to the update button
-$(".update-button").click(function (e) {
-  e.preventDefault();
 
-  // hide the current comment which is being updated
-
-  const comment = document.getElementById(`comment-${this.id.split("-")[1]}`);
-  console.log(comment);
-  const commentContent = comment.querySelector('p').textContent;
-  // the above line gives Cannot read properties of null (reading 'querySelector')
-
-  $(".comment").removeClass("d-none");
-  $(".comment").addClass("d-flex");
-  comment.classList.add('d-none');
-  comment.classList.remove('d-flex');
-
-  // insert the comment update form instead of the comment being updated and pass the comment id to the form
-
-  const commentUpdateForm = document.getElementById('comment-update-form');
-  console.log(commentUpdateForm);
-  $(commentUpdateForm).find("input[name='comment_id']").val(this.id.split("-")[1]);
-  commentUpdateForm.querySelector('#comment-box').value = commentContent;
-  commentUpdateForm.style.display = 'block';
-  $(comment).after(commentUpdateForm);
-});
+function updateButtonClicked(button, e) {
+    e.preventDefault();
+  
+    // hide the current comment which is being updated
+  
+    const comment = document.getElementById(`comment-${button.id.split("-")[1]}`);
+    console.log(comment);
+    const commentContent = comment.querySelector('p').textContent;
+  
+    $(".comment").removeClass("d-none");
+    $(".comment").addClass("d-flex");
+    comment.classList.add('d-none');
+    comment.classList.remove('d-flex'); 
+  
+    // insert the comment update form instead of the comment being updated and pass the comment id to the form
+  
+    const commentUpdateForm = document.getElementById('comment-update-form');
+    console.log(commentUpdateForm);
+    $(commentUpdateForm).find("input[name='comment_id']").val(button.id.split("-")[1]);
+    commentUpdateForm.querySelector('#comment-box').value = commentContent;
+    commentUpdateForm.style.display = 'block';
+    $(comment).after(commentUpdateForm);
+}
 
 $("#cancel-update-button").click(function (e) {
   e.preventDefault();
