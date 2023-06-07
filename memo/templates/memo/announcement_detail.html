@@ -11,8 +11,8 @@
             <a class="mr-2" href="{% url 'profile' post.author.profile.pk %}">{{ object.author }}</a>
             <small class="text-muted">{{ object.date_posted|date:"d F Y" }}</small>
         </div>
-        <h2 class="article-title">{{ object.title }}</h2>
-        <p class="article-content">{{ object.content }}</p>
+        <h2 class="article-title" style="text-align: center;">{{ object.title }}</h2>
+        <p class="article-content" style="text-align: center;">{{ object.content }}</p>
         {% if request.user == object.author or request.user.is_superuser %}
             <div>
                     <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
