@@ -62,22 +62,20 @@
             </div>
             <p style="margin: 5px; white-space: pre-wrap;"></p>
             </div>
-            {% if request.user == comment.author or request.user.is_superuser %}
-                <!-- Three dot menu -->
-                <div class="dropdown">
-                    <!-- Three dots icon -->
-                    <div class="dropbtn icons btn-right showLeft" onclick="showDropdown(event)">
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    </div>
-                    <!-- Menu -->
-                    <div id="myDropdown-new" class="dropdown-content">
-                        <button type="button" class="btn update-button" onclick="updateButtonClicked(this, event)">Edit</button>
-                        <button type="button" class="btn delete-button">Delete</button>
-                    </div>
+            <!-- Three dot menu -->
+            <div class="dropdown">
+                <!-- Three dots icon -->
+                <div class="dropbtn icons btn-right showLeft" onclick="showDropdown(event)">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
                 </div>
-            {% endif %}
+                <!-- Menu -->
+                <div id="myDropdown-new" class="dropdown-content">
+                    <button type="button" class="btn update-button" onclick="updateButtonClicked(this, event)">Edit</button>
+                    <button type="button" class="btn delete-button">Delete</button>
+                </div>
+            </div>
         </div>
     </div>
     <div id="comment-section">
