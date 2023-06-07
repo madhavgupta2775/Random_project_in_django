@@ -9,10 +9,12 @@
             <div class="article-metadata">
                 <a class="mr-2" href="{% url 'profile' post.author.profile.pk %}">{{ post.author|format_username }}</a>
                 <small class="text-muted">{{ post.date_posted|date:"d F Y" }}</small>
-                {% if post.private %}
-                    <span class="label label-private">Private</span>
-                {% else %}
-                    <span class="label label-public">Public</span>
+                {% if request.user.is_superuser or request.user == post.author %}
+                    {% if post.private %}
+                        <span class="label label-private">Private</span>
+                    {% else %}
+                        <span class="label label-public">Public</span>
+                    {% endif %}
                 {% endif %}
             </div>
             <h2 style="text-align: center;"><a class="article-title" href="{% url 'announcement-detail' post.id %}">{{ post.title }}</a></h2>
