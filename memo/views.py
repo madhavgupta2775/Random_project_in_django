@@ -80,6 +80,7 @@ class ArchivedPostListView(PostListView):
     
 class ArchivedAnnouncementListView(PostListView):
     ordering = ['-date_posted']
+    template_name = 'memo/announcement_home.html'
     def get_queryset(self):
         queryset = super().get_queryset(True, True)
         user = self.request.user
