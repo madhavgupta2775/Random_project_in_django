@@ -11,7 +11,7 @@ class PostUpdateForm(forms.ModelForm):
         model = Post
         fields = ['title', 'content', 'date_due', 'private', 'is_archived']
 
-class PostCreateForm(forms.ModelForm):
+class MemoCreateForm(forms.ModelForm):
     date_due = forms.DateTimeField(label="Due Date", widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}))
     class Meta:
         model = Post

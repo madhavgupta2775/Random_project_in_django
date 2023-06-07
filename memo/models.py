@@ -13,6 +13,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     private = models.BooleanField(default=False)
     is_archived = models.BooleanField(default=False)
+    # is_announcement = models.BooleanField(default=False)
     # comments = models.ForeignKey(Comment)
 
     def __str__(self):

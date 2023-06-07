@@ -7,7 +7,7 @@ from django.db.models import Q
 from .models import Post, Comment
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.http import require_POST, require_http_methods
-from .forms import PostUpdateForm, PostCreateForm, CommentForm
+from .forms import PostUpdateForm, MemoCreateForm, CommentForm
 from django.contrib import messages
 
 # Create your views here.
@@ -74,9 +74,9 @@ class PostDetailView(DetailView):
         return context
 
 
-class PostCreateView(LoginRequiredMixin, CreateView):
+class MemoCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    form_class = PostCreateForm
+    form_class = MemoCreateForm
     # fields = ['title', 'content', 'date_due', 'private']
 
 
