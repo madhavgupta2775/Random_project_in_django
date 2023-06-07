@@ -14,7 +14,7 @@
         <h2 class="article-title" style="text-align: center;">{{ object.title }}</h2>
         <p class="article-content" style="text-align: center;">{{ object.content }}</p>
         {% if request.user == object.author or request.user.is_superuser %}
-            <div>
+            <div style="text-align: center;">
                     <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
                     <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
             </div>       
