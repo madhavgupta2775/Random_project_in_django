@@ -1,4 +1,5 @@
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Type
+from django.forms.models import BaseModelForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -130,10 +131,16 @@ class AnnouncementCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    if model.is_announcement:
-        form_class = AnnouncementUpdateForm
-    else:
-        form_class = PostUpdateForm
+
+    def get_form_class(self):
+        if self.get_object().is_announcement:
+            print("announcement")
+            return AnnouncementUpdateForm
+        else:   
+            print("memo")
+            return PostUpdateForm
+
+    
     # fields = ['title', 'content', 'date_due', 'private', 'is_archived']
 
     def form_valid(self, form):
@@ -149,10 +156,12 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
-    if model.is_announcement:
-        success_url = '/announcement/'
-    else:
-        success_url = '/memo/'
+    def get_success_url(self):
+        if self.object.is_announcement:
+            return '/announcement/'
+        else:
+            return '/memo/'
+        
     def test_func(self):
         post = self.get_object()
         if self.request.user == post.author or self.request.user.is_superuser:
