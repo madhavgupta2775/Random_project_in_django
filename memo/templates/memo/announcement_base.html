@@ -1,11 +1,27 @@
 {% extends "memo/base.html" %}
 
+{% block navbar-stuff %}
+  <div class="navbar-nav mr-auto">
+    <a class="nav-item nav-link" href="{% url 'homepage-about' %}">About</a>
+  </div>
+  <!-- Navbar Right Side -->
+  <div class="navbar-nav">
+    {% if request.user.is_authenticated %}
+    <a class="nav-item nav-link" href="{% url 'profile' request.user.profile.pk %}">Profile</a>
+    <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+    {% else %}
+      <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+      <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+    {% endif %}
+  </div>
+{% endblock navbar-stuff %}
+
 {% block sidebar %}
     <div class="content-section no-scroll">
         <h3>Announcements Sidebar</h3>
           <p>
               <ul class="list-group">
-                <a class="list-group-item" href="{% url 'archived-memo' %}">Archive</a>
+                <a class="list-group-item" href="{% url 'archived-announcement' %}">Archive</a>
                 {% if request.user.is_superuser %}
                     <a class="list-group-item" href="{% url 'announcement-create' %}">Create</a>
                 {% endif %}

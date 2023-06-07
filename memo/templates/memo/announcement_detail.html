@@ -1,0 +1,128 @@
+{% extends "memo/announcement_base.html" %}
+{% load static %}
+{% block content %}
+    {% if object.private and not request.user.is_superuser and object.author != request.user %}
+        <p>This post is private.</p>
+    {% else %}
+    <article class="media content-section no-scroll">
+        <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
+        <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="{% url 'profile' post.author.profile.pk %}">{{ object.author }}</a>
+            <small class="text-muted">{{ object.date_posted|date:"d F Y" }}</small>
+        </div>
+        <h2 class="article-title">{{ object.title }}</h2>
+        <p class="article-content">{{ object.content }}</p>
+        {% if request.user == object.author or request.user.is_superuser %}
+            <div>
+                    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
+                    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+            </div>       
+        {% endif %}
+        </div>          
+    </article>
+    <form id="comment-form" action="{% url 'create_comment' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="memo" value="{{ object.pk }}">
+        <!-- Add fields for comment content, e.g., a textarea or input -->
+        <!-- display textarea (that shows one line by default) and button side by side -->
+        
+        <div class="form-group">
+            <div class="input-group">
+                <textarea id="comment-box" rows="1" name="content" class="form-control comment-box" placeholder=" Add a comment..." required></textarea>
+            </div>
+            <div class="d-flex m-2 justify-content-end">
+                <button type="submit" class="btn submit-btn">comment</button>
+            </div>
+        </div>
+    </form>
+    <form id="comment-update-form" action="{% url 'update_comment' %}" method="post" style="display: none;">
+        {% csrf_token %}
+        <input type="hidden" name="memo" value="{{ object.pk }}">
+        <input type="hidden" name="comment_id" value="">
+        <div class="form-group">
+            <div class="input-group">
+                <textarea id="comment-box" name="content" class="form-control comment-box"></textarea>
+            </div>
+            <div class="d-flex m-2 justify-content-end">
+                <button type="submit" class="btn submit-btn">Update</button>
+                <button type="button" id="cancel-update-button" class="btn btn-secondary cancel-btn">Cancel</button>
+            </div>
+        </div>
+    </form>
+    <!-- Hidden template for new comments -->
+    <div id="comment-template" style="display: none;">
+        <div class="media content-section comment d-flex">
+            <img class="rounded-circle comment-author-img" src="{{ request.user.profile.image.url }}">
+            <div class="media-body col-11 no-scroll">
+            <div class="article-metadata">
+                <a class="mr-2" style="font-size: 15px;" href="{% url 'profile' request.user.profile.pk %}">{{ request.user.username }}</a>
+                <small class="text-muted">0 seconds ago</small>
+            </div>
+            <p style="margin: 5px; white-space: pre-wrap;"></p>
+            </div>
+            <!-- Three dot menu -->
+            <div class="dropdown">
+                <!-- Three dots icon -->
+                <div class="dropbtn icons btn-right showLeft" onclick="showDropdown(event)">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                </div>
+                <!-- Menu -->
+                <div id="myDropdown-new" class="dropdown-content">
+                    <button type="button" class="btn update-button" onclick="updateButtonClicked(this, event)">Edit</button>
+                    <button type="button" class="btn delete-button">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="comment-section">
+        <h3>Comments</h3>
+        {% for comment in comments %} 
+        <div class="media content-section comment d-flex" id="comment-{{comment.pk}}">
+            <img class="rounded-circle comment-author-img" src="{{ comment.author.profile.image.url }}">
+            <div class="media-body col-11 no-scroll">
+            <div class="article-metadata">
+                <a class="mr-2" style="font-size: 15px;" href="{% url 'profile' comment.author.profile.pk %}">{{ comment.author }}</a>
+                <small class="text-muted">{{ comment.date_posted|timesince }} ago</small>
+            </div>
+            <p style="margin: 5px; white-space: pre-wrap;">{{ comment.content }}</p>
+            </div>
+            {% if request.user == comment.author or request.user.is_superuser %}
+                <!-- Three dot menu -->
+                <div class="dropdown">
+                    <!-- Three dots icon -->
+                    <div class="dropbtn icons btn-right showLeft" onclick="showDropdown(event)">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    </div>
+                    <!-- Menu -->
+                    <div id="myDropdown" class="dropdown-content">
+                        <button type="button" class="btn update-button" onclick="updateButtonClicked(this, event)" id="updatecomment-{{comment.pk}}">Edit</button>
+                        <button type="button" class="btn delete-button">Delete</button>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    
+    {% endif %}
+
+    
+    
+{% endblock content %}
+
+{% block scripts %}
+<script src="{% static 'memo/comments.js' %}"></script>
+    <script>
+        $("#comment-box").each(function () {
+            this.setAttribute("style", "height:" + (this.scrollHeight) + "px;overflow-y:hidden;");
+        }).on("input", function () {
+            this.style.height = 0;
+            this.style.height = (this.scrollHeight) + "px";
+        });
+    </script>
+{% endblock scripts %}

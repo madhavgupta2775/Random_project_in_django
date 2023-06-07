@@ -1,5 +1,21 @@
 {% extends "memo/base.html" %}
 
+{% block navbar-stuff %}
+  <div class="navbar-nav mr-auto">
+    <a class="nav-item nav-link" href="{% url 'memo_about' %}">About_Memos</a>
+  </div>
+  <!-- Navbar Right Side -->
+  <div class="navbar-nav">
+    {% if request.user.is_authenticated %}
+    <a class="nav-item nav-link" href="{% url 'profile' request.user.profile.pk %}">Profile</a>
+    <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+    {% else %}
+      <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+      <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+    {% endif %}
+  </div>
+{% endblock navbar-stuff %}
+
 {% block sidebar %}
     <div class="content-section no-scroll">
         <h3>Memo Sidebar</h3>

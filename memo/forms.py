@@ -23,6 +23,12 @@ class AnnouncementCreateForm(forms.ModelForm):
         model = Post
         fields = ['title', 'content', 'private']
 
+class AnnouncementUpdateForm(forms.ModelForm):
+    is_archived = forms.BooleanField(label="Mark as Archived", required=False)
+    class Meta:
+        model = Post
+        fields = ['title', 'content', 'private', 'is_archived']
+
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment

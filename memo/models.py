@@ -20,7 +20,10 @@ class Post(models.Model):
         return self.title
     
     def get_absolute_url(self):
-        return reverse('post-detail', kwargs={'pk':self.pk})
+        if not self.is_announcement:
+            return reverse('post-detail', kwargs={'pk':self.pk})
+        else:
+            return reverse('announcement-detail', kwargs={'pk':self.pk})
     
 class Comment(models.Model):
     content = models.TextField()

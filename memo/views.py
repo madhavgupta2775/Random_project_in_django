@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -8,7 +8,7 @@ from .models import Post, Comment
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.decorators import user_passes_test
 from django.views.decorators.http import require_POST, require_http_methods
-from .forms import PostUpdateForm, MemoCreateForm, CommentForm, AnnouncementCreateForm
+from .forms import PostUpdateForm, MemoCreateForm, CommentForm, AnnouncementCreateForm, AnnouncementUpdateForm
 from django.contrib import messages
 
 # Create your views here.
@@ -77,8 +77,24 @@ class ArchivedPostListView(PostListView):
         if user.is_superuser:
             return queryset # Superusers can see all memos
         return queryset.filter(models.Q(private=False) | models.Q(author=user))
+    
+class ArchivedAnnouncementListView(PostListView):
+    ordering = ['-date_posted']
+    def get_queryset(self):
+        queryset = super().get_queryset(True, True)
+        user = self.request.user
+        if user.is_superuser:
+            return queryset # Superusers can see all memos
+        return queryset.filter(models.Q(private=False) | models.Q(author=user))
 
 class PostDetailView(DetailView):
+    
+    def get_template_names(self):
+        if self.object.is_announcement:
+            return ['memo/announcement_detail.html']
+        else:
+            return ['memo/post_detail.html']
+
     model = Post
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
@@ -113,7 +129,10 @@ class AnnouncementCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    form_class = PostUpdateForm
+    if model.is_announcement:
+        form_class = AnnouncementUpdateForm
+    else:
+        form_class = PostUpdateForm
     # fields = ['title', 'content', 'date_due', 'private', 'is_archived']
 
     def form_valid(self, form):
@@ -129,7 +148,10 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
-    success_url = '/memo/'
+    if model.is_announcement:
+        success_url = '/announcement/'
+    else:
+        success_url = '/memo/'
     def test_func(self):
         post = self.get_object()
         if self.request.user == post.author or self.request.user.is_superuser:
@@ -148,7 +170,7 @@ def create_comment(request):
             comment = form.save(commit=False)
             comment.author = request.user
             comment.save()
-
+            # print(comment.memo.is_announcement)
             # Prepare the data to be returned in the JSON response
             data = {
                 'content': comment.content,
@@ -162,13 +184,16 @@ def create_comment(request):
             # Handle form validation errors
             errors = form.errors.as_json()
             return JsonResponse({'error': errors}, status=400)
-    
+    if comment.memo.is_announcement:
+        # print("announcement")
+        return redirect('announcement_detail', pk=comment.memo.pk)
     return redirect('post_detail', pk=comment.memo.pk)  # Redirect to the memo detail page
 
 @require_http_methods(['DELETE'])
 def delete_comment(request, pk):
     comment = get_object_or_404(Comment, id=pk)
     pk = comment.memo.pk
+    is_announcement = comment.memo.is_announcement
     if request.user == comment.author or request.user.is_superuser:
         if request.method == 'DELETE':
             comment.delete()
@@ -177,6 +202,8 @@ def delete_comment(request, pk):
             messages.error(request, 'Invalid request method.')
     else:
         messages.error(request, 'You are not allowed to delete this comment.')
+    if(is_announcement):
+        return redirect('announcement-detail', pk=pk)
     return redirect('post-detail', pk=pk)
 
 def update_comment(request):
@@ -199,5 +226,6 @@ def update_comment(request):
                 # Handle form validation errors
                 errors = form.errors.as_json()
                 return JsonResponse({'error': errors}, status=400)
-    
+    if(comment.memo.is_announcement):
+        return redirect('announcement_detail', pk=comment.memo.pk)
     return redirect('post_detail', pk=comment.memo.pk)  # Redirect to the memo detail page

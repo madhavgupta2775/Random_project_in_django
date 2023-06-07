@@ -14,7 +14,7 @@
                     <span class="label label-public">Public</span>
                 {% endif %}
             </div>
-            <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+            <h2><a class="article-title" href="{% url 'announcement-detail' post.id %}">{{ post.title }}</a></h2>
             <p class="article-content">{{ post.content }}</p>
             </div>
         </article>

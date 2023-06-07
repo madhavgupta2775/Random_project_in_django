@@ -1,11 +1,11 @@
-{% extends "memo/memo_base.html" %}
+{% extends "memo/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
     <div class="content-section no-scroll">
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">New Memo</legend>
+                <legend class="border-bottom mb-4">New Post</legend>
                 {{ form|crispy }}
             </fieldset>
             <div class="form-group">
