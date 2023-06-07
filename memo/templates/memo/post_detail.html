@@ -1,5 +1,7 @@
 {% extends "memo/memo_base.html" %}
 {% load static %}
+{% load custom_filters %}
+
 {% block content %}
     {% if object.private and not request.user.is_superuser and object.author != request.user %}
         <p>This memo is private.</p>
@@ -8,7 +10,7 @@
         <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
         <div class="media-body">
         <div class="article-metadata">
-            <a class="mr-2" href="{% url 'profile' post.author.profile.pk %}">{{ object.author }}</a>
+            <a class="mr-2" href="{% url 'profile' post.author.profile.pk %}">{{ object.author|format_username }}</a>
             <small class="text-muted">{{ object.date_posted|date:"d F Y" }}</small>
         </div>
         <h2 class="article-title">{{ object.title }}</h2>
@@ -57,7 +59,7 @@
             <img class="rounded-circle comment-author-img" src="{{ request.user.profile.image.url }}">
             <div class="media-body col-11 no-scroll">
             <div class="article-metadata">
-                <a class="mr-2" style="font-size: 15px;" href="{% url 'profile' request.user.profile.pk %}">{{ request.user.username }}</a>
+                <a class="mr-2" style="font-size: 15px;" href="{% url 'profile' request.user.profile.pk %}">{{ request.user|format_username }}</a>
                 <small class="text-muted">0 seconds ago</small>
             </div>
             <p style="margin: 5px; white-space: pre-wrap;"></p>
@@ -85,7 +87,7 @@
             <img class="rounded-circle comment-author-img" src="{{ comment.author.profile.image.url }}">
             <div class="media-body col-11 no-scroll">
             <div class="article-metadata">
-                <a class="mr-2" style="font-size: 15px;" href="{% url 'profile' comment.author.profile.pk %}">{{ comment.author }}</a>
+                <a class="mr-2" style="font-size: 15px;" href="{% url 'profile' comment.author.profile.pk %}">{{ comment.author|format_username }}</a>
                 <small class="text-muted">{{ comment.date_posted|timesince }} ago</small>
             </div>
             <p style="margin: 5px; white-space: pre-wrap;">{{ comment.content }}</p>

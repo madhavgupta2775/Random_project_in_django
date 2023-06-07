@@ -1,10 +1,11 @@
 {% extends "homepage/base.html" %}
+{% load custom_filters %}
 {% block content %}
     <div class="content-section no-scroll">
     <div class="media">
         <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
         <div class="media-body">
-            <h2 class="account-heading">{{ user.username }}</h2>
+            <h2 class="account-heading">{{ user|format_username }}</h2>
             {% if user.profile.show_email %}
                 <p class="text-secondary">{{ user.email }}</p>
             {% endif %}
