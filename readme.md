@@ -25,7 +25,7 @@ Just to keep track of what's there
 
 ### Pages
 
-    -> website home, about
+    -> website home, about, announcements
 
     -> memo home (paginated), memo about
 
@@ -92,6 +92,8 @@ Just to keep track of what's there
     -> Error Page (customized image specific to the page)
 
     -> Scroll Bar
+
+    -> custom filters on username
 
 ### Other
     
