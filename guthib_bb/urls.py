@@ -19,7 +19,8 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from users import views as user_views
-from homepage.views import error_page
+from memo import views as memo_views
+from homepage import views as homepage_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,12 +33,13 @@ urlpatterns = [
     path('password_reset/', auth_views.PasswordResetView.as_view(template_name='users/password_reset.html'), name='password_reset'),
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='users/password_reset_done.html'), name='password_reset_done'),
     path('password_reset_confirm/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='users/password_reset_confirm.html'), name='password_reset_confirm'),
-    path('memo/', include('memo.urls')),
+    path('memo/', include('memo.memo_urls')),
+    path('announcement/', include('memo.announcement_urls')),
 ]
 
 # print(settings.STATIC_ROOT, settings.STATIC_URL)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
-handler404 = error_page
-handler500 = error_page
+handler404 = homepage_views.error_page
+handler500 = homepage_views.error_page

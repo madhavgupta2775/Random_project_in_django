@@ -6,8 +6,9 @@ from django.db import models
 from django.db.models import Q
 from .models import Post, Comment
 from django.http import HttpResponse, JsonResponse
+from django.contrib.auth.decorators import user_passes_test
 from django.views.decorators.http import require_POST, require_http_methods
-from .forms import PostUpdateForm, MemoCreateForm, CommentForm
+from .forms import PostUpdateForm, MemoCreateForm, CommentForm, AnnouncementCreateForm
 from django.contrib import messages
 
 # Create your views here.
@@ -17,23 +18,34 @@ def home(request):
     context = {
         'posts': Post.objects.all()
     }
-    return render(request, 'memo/home.html', context)
+    return render(request, 'memo/memo_home.html', context)
 
 
 class PostListView(ListView):
     model = Post
-    template_name = 'memo/home.html' # <app>/<model>_<viewtype>.html
+    template_name = 'memo/memo_home.html' # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
     ordering = ['date_due']
     paginate_by = 5
-    def get_queryset(self, archived=False):
-        queryset = super().get_queryset().filter(is_archived=archived)
+    def get_queryset(self, archived=False, announcement=False):
+        queryset = super().get_queryset().filter(is_archived=archived, is_announcement=announcement)
         user = self.request.user
 
         if user.is_superuser:
             return queryset # Superusers can see all memos
 
         return queryset.filter(models.Q(private=False) | models.Q(author=user))
+    
+class AnnouncementListView(PostListView):
+    ordering = ['-date_posted']
+    template_name = 'memo/announcement_home.html'
+    def get_queryset(self):
+        queryset = super().get_queryset(False, True)
+        user = self.request.user
+        if user.is_superuser:
+            return queryset # Superusers can see all memos
+        return queryset.filter(models.Q(private=False) | models.Q(author=user))
+    
     
 
 class UserMemosView(PostListView):
@@ -59,7 +71,7 @@ class ArchivedPostListView(PostListView):
     # template_name = 'memo/archived_memos.html'
     ordering = ['-date_due']
     def get_queryset(self):
-        queryset = super().get_queryset(True)
+        queryset = super().get_queryset(True, False)
         user = self.request.user
         # print(queryset)
         if user.is_superuser:
@@ -82,6 +94,20 @@ class MemoCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    
+class AnnouncementCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+    model = Post
+    form_class = AnnouncementCreateForm
+    # fields = ['title', 'content', 'private']
+
+    def test_func(self):
+        return self.request.user.is_superuser
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        form.instance.is_announcement = True
         return super().form_valid(form)
 
 

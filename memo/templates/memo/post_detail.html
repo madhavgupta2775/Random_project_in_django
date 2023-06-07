@@ -1,4 +1,4 @@
-{% extends "memo/base.html" %}
+{% extends "memo/memo_base.html" %}
 {% load static %}
 {% block content %}
     {% if object.private and not request.user.is_superuser and object.author != request.user %}

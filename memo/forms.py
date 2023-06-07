@@ -17,6 +17,12 @@ class MemoCreateForm(forms.ModelForm):
         model = Post
         fields = ['title', 'content', 'date_due', 'private']
 
+
+class AnnouncementCreateForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['title', 'content', 'private']
+
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment

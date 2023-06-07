@@ -1,0 +1,15 @@
+{% extends "memo/base.html" %}
+
+{% block sidebar %}
+    <div class="content-section no-scroll">
+        <h3>Announcements Sidebar</h3>
+          <p>
+              <ul class="list-group">
+                <a class="list-group-item" href="{% url 'archived-memo' %}">Archive</a>
+                {% if request.user.is_superuser %}
+                    <a class="list-group-item" href="{% url 'announcement-create' %}">Create</a>
+                {% endif %}
+              </ul>
+          </p>
+    </div>
+{% endblock sidebar %} 
