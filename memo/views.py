@@ -207,11 +207,11 @@ def delete_comment(request, pk):
     if request.user == comment.author or request.user.is_superuser:
         if request.method == 'DELETE':
             comment.delete()
-            messages.success(request, 'Comment has been deleted successfully.')
-        else:
-            messages.error(request, 'Invalid request method.')
-    else:
-        messages.error(request, 'You are not allowed to delete this comment.')
+            # messages.success(request, 'Comment has been deleted successfully.')
+        # else:
+            # messages.error(request, 'Invalid request method.')
+    # else:
+    #     messages.error(request, 'You are not allowed to delete this comment.')
     if(is_announcement):
         return redirect('announcement-detail', pk=pk)
     return redirect('post-detail', pk=pk)
