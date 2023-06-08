@@ -71,7 +71,7 @@ Just to keep track of what's there
 
         -> Update
 
-        -> Delete ( Currently in development )
+        -> Delete
 
     -> memo properties
 
