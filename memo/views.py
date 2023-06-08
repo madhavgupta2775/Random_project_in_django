@@ -6,7 +6,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.db import models
 from django.db.models import Q
 from .models import Post, Comment
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, Http404
 from django.contrib.auth.decorators import user_passes_test
 from django.views.decorators.http import require_POST, require_http_methods
 from .forms import PostUpdateForm, MemoCreateForm, CommentForm, AnnouncementCreateForm, AnnouncementUpdateForm
@@ -199,20 +199,27 @@ def create_comment(request):
         return redirect('announcement_detail', pk=comment.memo.pk)
     return redirect('post_detail', pk=comment.memo.pk)  # Redirect to the memo detail page
 
-@require_http_methods(['DELETE'])
-def delete_comment(request, pk):
-    comment = get_object_or_404(Comment, id=pk)
+@require_http_methods(['POST'])
+def delete_comment(request):
+    # print("okay1")
+    comment_id = request.POST.get('comment_id')
+    # print(comment_id)
+    if comment_id is None:
+        # print("is none")
+        raise Http404("Comment ID not found")
+    # print("okay2")
+    comment = get_object_or_404(Comment, pk=int(comment_id))
+    # print("okay3")
     pk = comment.memo.pk
     is_announcement = comment.memo.is_announcement
     if request.user == comment.author or request.user.is_superuser:
-        if request.method == 'DELETE':
-            comment.delete()
-            # messages.success(request, 'Comment has been deleted successfully.')
-        # else:
-            # messages.error(request, 'Invalid request method.')
-    # else:
-    #     messages.error(request, 'You are not allowed to delete this comment.')
-    if(is_announcement):
+        data = {
+            'id': comment.pk,
+        }
+        comment.delete()
+        return JsonResponse(data)
+
+    if is_announcement:
         return redirect('announcement-detail', pk=pk)
     return redirect('post-detail', pk=pk)
 
