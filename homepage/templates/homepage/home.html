@@ -31,20 +31,20 @@ var codecolor = getRandomColor();
 
 // Setting up the draw function
 function draw() {
-    ctx.fillStyle = 'rgba(0, 0, 0, .1)';
+    ctx.fillStyle = `rgba(0, 0, 0, 0.06)`;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = codecolor + ')';
+    ctx.fillStyle = `hsl(${codecolor[0]}, ${codecolor[1]}%, ${codecolor[2]}%)`;
     for (var i = 0; i < drops.length; i++) {
         var text = letters[Math.floor(Math.random() * letters.length)];
-        var opacity = 1 - (drops[i] * 0.05); // Calculate the opacity based on the position of the text
-        var glowColor = codecolor + ',' + opacity + ')';
+        var glowColor = `hsl(${codecolor[0]}, ${codecolor[1]}%, ${codecolor[2]}%)`;
         ctx.save();
-        ctx.shadowBlur = 100; // Set the blur radius for the glow effect
-        ctx.shadowColor = glowColor; // Set the color of the glow effect    
+        ctx.shadowBlur = 0; 
+        ctx.shadowColor = glowColor;     
         ctx.font = fontSize + 'px monospace'; // Set the font size
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
         ctx.restore();
-        drops[i]++;
+        
+        drops[i]++; //= Math.random() * (canvas.height/fontSize);
         if (drops[i] * fontSize > canvas.height && Math.random() > .95) {
             drops[i] = 0;
         }
@@ -53,25 +53,15 @@ function draw() {
 
 // Function to generate a random color visible on a black background
 function getRandomColor() {
-    var color = 'rgb('; // Start with the basic building block for a color
-    var sum = 0;
-    for(var i = 0; i < 3; i++) {
-        var brightness = Math.floor(Math.random() * 255); // Random brightness value between 0 and 255
-        sum += brightness;
-        if(i == 2 && sum < 360) { // If the sum of the brightness values is less than 360, make the color brighter
-            brightness = Math.min(190, 360 + brightness - sum);
-            sum += brightness;
-        }
-        color += brightness;
-        if(i < 2) {
-            color += ',';
-        }
-    }
-    return color;
+    let hue = Math.random()*360;
+    let saturation = 100;
+    let lightness = Math.random()*50 + 40;
+
+    return [hue, saturation, lightness];
 }
 
 // Loop the animation
-setInterval(draw, 8);
+setInterval(draw, 14);
 </script>
 {% endblock %}
 
@@ -90,7 +80,7 @@ setInterval(draw, 8);
 setTimeout(function() {
     $(canvas).fadeOut(1000);
     $("#d-fade").removeClass("d-none");
-}, 1200);
+}, 1600);
 </script>
 {% endblock %}
 
