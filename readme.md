@@ -41,9 +41,11 @@ Just to keep track of what's there
 
     -> Registration/login using username and email
 
-    -> Registration/login using google
+    -> Registration/login using Google
 
-    -> Account can be linked using Google or password can be set
+    -> Account can be linked using Google
+
+    -> password set/reset
 
     -> Profile
 
@@ -108,5 +110,7 @@ Just to keep track of what's there
     -> Quick Links
     
     -> Homepage Loading Animation
+
+    -> three dot menu
 
 
