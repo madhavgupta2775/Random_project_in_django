@@ -33,7 +33,7 @@ Just to keep track of what's there
 
     -> memo detail, memo update, memo delete confirm
 
-    -> register, login, logout
+    -> register, login, logout, accounts
 
     -> user profiles
 
