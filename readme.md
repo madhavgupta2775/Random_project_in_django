@@ -43,6 +43,8 @@ Just to keep track of what's there
 
     -> Registration/login using google
 
+    -> Account can be linked using Google or password can be set
+
     -> Profile
 
         -> email (show/hide)
@@ -54,6 +56,8 @@ Just to keep track of what's there
         -> bio
 
         -> profile update
+
+    -> Password Reset
 
     -> Different user levels (normal user and superuser), superuser has extra permissions
 
