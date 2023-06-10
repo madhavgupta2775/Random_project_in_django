@@ -64,6 +64,7 @@ body {
   .list-group-item {
     background-color: #050720;
     font-size: medium;
+    font-size: 20px;
   }
   
   .bg-steel {
@@ -248,4 +249,27 @@ img {
   height: auto;
 }
 
+button {
+  background-color: #050720;
+  color: #2f979b;
+  border: 1px solid #2f979b;
+  border-radius: 5px; 
+  padding: 6px;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
 
+button:hover {
+  background-color: #2f979b;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+input {
+  background-color: #1d2022;
+  color: #ffffff;
+  padding: none;
+  border-radius: 2px;
+  border: none;
+}

@@ -239,6 +239,7 @@ body {
   
   .btn-right {
     right: 0.4em;
+    cursor: pointer;
   }
   
   .dropdown {
