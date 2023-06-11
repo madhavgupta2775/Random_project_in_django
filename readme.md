@@ -7,14 +7,18 @@ This is a random project in django which I ~~have~~ had started on a whim. It's 
 
 These are the main features currenly in development:
 
-### -> have a net activity chart
+### Group Chat/DM
+
+This might take a while. Currently learning DRF for implementing this.
+
+### have a net activity chart
 
 ~~I spend a lot more time on competitive programming than on projects like this. Hence, my github looks shit and has a almost white activity chart.~~
 I decided to make a net activity chart which combines the activity of websites like codeforces and github. Basically it's purpose is that I can look at a greener activity chart to feel good about myself.
 
 upd: I am a bit confused as to whether I should add this or not, hence it is on hold for now.
 
-### -> easter eggs
+### easter eggs
 
 Just for fun :)
 
