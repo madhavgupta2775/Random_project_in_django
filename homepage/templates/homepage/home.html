@@ -57,8 +57,9 @@ function getRandomColor() {
     let saturation = 100;
     let lightness = Math.random()*50 + 40;
 
+    localStorage.setItem('primaryColor', JSON.stringify([hue, saturation, lightness]));
     return [hue, saturation, lightness];
-}
+ }
 
 // Loop the animation
 setInterval(draw, 14);
