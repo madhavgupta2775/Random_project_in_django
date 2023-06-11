@@ -25,7 +25,7 @@ class ProfileUpdateForm(forms.ModelForm):
         fields = ['image', 'bio', 'show_email']
 
 class PreferencesUpdateForm(forms.ModelForm):
-    theme_color = forms.CharField(max_length=20, required=True, label="Theme Color ([H, S, L] (e.g. [0, 50, 50]) or random/default)")
+    theme_color = forms.CharField(max_length=20, required=True, label="Theme Color")                                  
     class Meta:
         model = UserPreferences
         fields = ['show_email', 'theme_color']

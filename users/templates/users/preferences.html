@@ -15,8 +15,114 @@
                 <button class="btn btn-outline-info" type="submit">Confirm</button>
             </div>
         </form>
-        <p>Theme color can be set to one of default, random or a custom color in [H, S, L] format.</p>
-        <label for="colorpicker">Color Picker for reference:</label>
-        <input type="color" id="colorpicker" value="#E1FF00">
     </div>
+{% endblock %}
+{% block scripts %}
+<script>
+
+     let theme_color_input = $("#id_theme_color");
+     theme_color_input.addClass("d-none");
+
+     function convertHexColorToHSL (hex_color)
+     {
+        let r = parseInt(hex_color.substr(1,2),16);
+        let g = parseInt(hex_color.substr(3,2),16);
+        let b = parseInt(hex_color.substr(5,2),16);
+
+        r /= 255, g /= 255, b /= 255;
+        
+        let max = Math.max(r, g, b), min = Math.min(r, g, b);
+        let h, s, l = (max + min) / 2;
+        
+        if(max == min){
+            h = s = 0; // achromatic
+        } else {
+            let d = max - min;
+            s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+            
+            switch(max){
+                case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                case g: h = (b - r) / d + 2; break;
+                case b: h = (r - g) / d + 4; break;
+            }   
+            
+            h /= 6;
+        }
+        
+        h = Math.round(h * 360);
+        s = Math.round(s * 100);
+        l = Math.round(l * 100);
+
+        return [h, s, l];
+     }
+
+     function hslToHex(hsl) {
+        let h = hsl[0];
+        let s = hsl[1];
+        let l = hsl[2];
+
+        l /= 100;
+        const a = s * Math.min(l, 1 - l) / 100;
+        const f = n => {
+          const k = (n + h / 30) % 12;
+          const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+          return Math.round(255 * color).toString(16).padStart(2, '0');   // convert to Hex and prefix "0" if needed
+        };
+        return `#${f(0)}${f(8)}${f(4)}`;
+      }
+      
+
+    function updateThemeColorInputFromColorPicker ()
+    {
+        let color_picker = $("#colorpicker");
+        let color = color_picker.val();
+        theme_color_input.val("[" + convertHexColorToHSL(color) + "]");
+    }
+
+     let combo_box_html = `
+        <select class="form-control" id="id_theme_color">
+            <option value="default">Default</option>
+            <option value="random">Random</option>
+            <option value="custom">Custom</option>
+        </select>
+     `;
+
+     let color_picker_html = `
+        <input type="color" id="colorpicker" class="d-none" value="#E1FF00">
+     `;
+
+    let combo_box = $(combo_box_html);
+
+    let color_picker = $(color_picker_html);
+    color_picker.on("change", updateThemeColorInputFromColorPicker);
+
+    function updateComboBoxFromThemeColorInput ()
+    {
+        let theme_color = theme_color_input.val();
+        if (theme_color == "default") {
+            combo_box.val("default");
+        } else if (theme_color == "random") {
+            combo_box.val("random");
+        } else {
+            combo_box.val("custom");
+            color_picker.removeClass("d-none");
+            color_picker.val(hslToHex(JSON.parse(theme_color)));
+        }
+    }
+
+     combo_box.on("change", function() {
+        if (this.value == "custom") {
+            color_picker.removeClass("d-none");
+            updateThemeColorInputFromColorPicker ();
+        } else {
+            color_picker.addClass("d-none");
+            theme_color_input.val(this.value);
+        }
+     });
+
+     combo_box.insertAfter(theme_color_input);
+     color_picker.insertAfter(combo_box);
+     updateComboBoxFromThemeColorInput ();
+     
+</script>
 {% endblock %}
