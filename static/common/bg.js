@@ -47,6 +47,22 @@ function addStars() {
         if (e.button !== 0) return;
         targetSpeed = BOOST_SPEED;
     }, false);
+
+    document.addEventListener('touchstart', function(e) {
+        // if (
+        //     DeviceMotionEvent &&
+        //     typeof DeviceMotionEvent.requestPermission === "function"
+        //   ) {
+        //     DeviceMotionEvent.requestPermission();
+        //   }
+         
+
+        targetSpeed = BOOST_SPEED;
+    }, false);
+
+    document.addEventListener('touchend', function(e) {
+        targetSpeed = DEFAULT_SPEED;
+    }, false);
     
     document.addEventListener('mouseup', function(d) {
         targetSpeed = DEFAULT_SPEED;
@@ -123,6 +139,24 @@ function randomizeParticle(p) {
     return p;
 }
 
+// window.addEventListener("deviceorientation", (e) => {
+//     //set html to orientation
+//     mouseX = e.gamma///360 * canvasWidth;
+//     mouseY = e.gamma///360 * canvasHeight;
+//     //document.body.innerHTML = "Orientation: " + e.alpha + ", " + e.beta + ", " + e.gamma;
+//     } 
+// );
+
+// let gyroscope = new Gyroscope({ frequency: 60 });
+
+// gyroscope.addEventListener("reading", (e) => {
+//     mouseX = centerX + gyroscope.x * 100;
+//     mouseY = centerY + gyroscope.y * 100;
+// });
+// gyroscope.start();
+
+// add device orientation event
+// get permission
 
 /**
  * Particle
