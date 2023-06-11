@@ -26,6 +26,7 @@
                 <div id="myDropdown" class="dropdown-content">
                     <a class="btn" href="/accounts/social/connections/">Link/Unlink Account</a>
                     <a class="btn" href="/accounts/password/reset/">Set/Reset Password</a>
+                    <a class="btn" href="{% url 'preferences' user.profile.pk %}">Change Preferences</a>
                 </div>
             </div>
         {% endif %}

@@ -58,8 +58,24 @@ function getRandomColor() {
     let lightness = Math.random()*50 + 40;
 
     localStorage.setItem('primaryColor', JSON.stringify([hue, saturation, lightness]));
+    // check if theme_color is a valid JSON string
+    if (isJson('{{ request.user.preferences.theme_color }}')) {
+        console.log('is json');
+        return JSON.parse('{{ request.user.preferences.theme_color }}');
+    }
     return [hue, saturation, lightness];
  }
+
+// Function to check if a string is a valid JSON string
+function isJson(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
 
 // Loop the animation
 setInterval(draw, 14);

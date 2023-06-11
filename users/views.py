@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, PreferencesUpdateForm
 from .models import User, Profile
 # from memo.views import UserMemosView
 from django.core.exceptions import PermissionDenied
@@ -67,6 +67,27 @@ def profile(request, pk):
         # 'memos_count': memos_count
     }
     return render(request, 'users/profile.html', context)
+
+def preferences(request, pk):
+    user = Profile.objects.get(pk=pk).user
+    preferences = user.preferences
+    if not request.user.is_superuser and user != request.user:
+        raise PermissionDenied
+    
+    if request.method == 'POST':
+        p_form = PreferencesUpdateForm(request.POST, instance=preferences)
+        if p_form.is_valid():
+            p_form.save()
+            messages.success(request, f'Preferences have been updated!')
+            return redirect('preferences', pk=pk)
+    else:
+        p_form = PreferencesUpdateForm(instance=preferences)
+    
+    context = {
+        'p_form': p_form,
+        'user': user
+    }
+    return render(request, 'users/preferences.html', context)
 
 
 # messages.debug

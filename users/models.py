@@ -28,3 +28,11 @@ class Profile(models.Model):
     def get_absolute_url(self):
         # return reverse('profile_update', kwargs={'pk':self.pk})
         return reverse('profile', kwargs={'pk':self.pk})
+    
+class UserPreferences(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='preferences')
+    show_email = models.BooleanField(default=True)
+    theme_color = models.CharField(max_length=20, null=True, blank=True, default='default')
+    
+    def __str__(self):
+        return f'{self.user.username} Preferences'

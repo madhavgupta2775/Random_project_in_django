@@ -1,0 +1,22 @@
+{% extends 'homepage/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="content-section no-scroll">
+    <h1>Preferences</h1>
+    <p>Here you can change your preferences.</p>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Change Preferences</legend>
+                {{ p_form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Confirm</button>
+            </div>
+        </form>
+        <p>Theme color can be set to one of default, random or a custom color in [H, S, L] format.</p>
+        <label for="colorpicker">Color Picker for reference:</label>
+        <input type="color" id="colorpicker" value="#E1FF00">
+    </div>
+{% endblock %}
