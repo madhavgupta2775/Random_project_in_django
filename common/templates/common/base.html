@@ -46,9 +46,9 @@
         secondaryColor = [primaryColor[0], primaryColor[1], 5];
         tertiaryColor = [primaryColor[0], primaryColor[1], primaryColor[2] > 65 ? 40 : 90];
       }
- 
+
       document.body.style.setProperty('--primary-color', `hsl(${primaryColor[0]}, ${primaryColor[1]}%, ${primaryColor[2]}%)`); //${primaryColor[2]}
-      document.body.style.setProperty('--secondary-color', `hsl(${secondaryColor[0]}, ${secondaryColor[1]}%, ${secondaryColor[2]}%)`);
+      document.body.style.setProperty('--secondary-color', `hsla(${secondaryColor[0]}, ${secondaryColor[1]}%, ${secondaryColor[2]}%, 0.7)`);
        document.body.style.setProperty('--tertiary-color', `hsl(${tertiaryColor[0]}, ${tertiaryColor[1]}%, ${tertiaryColor[2]}%)`);
      }
 
@@ -72,6 +72,7 @@
   <script>updateColors();</script>
     {% block matrix %}{% endblock %}
     <canvas id='c'></canvas>
+    <script>addStars();</script>
     <div id="d-fade" class="{% block d-fade-class %}{% endblock %}">
       <header class="site-header">
           <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">

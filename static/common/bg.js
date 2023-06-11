@@ -14,7 +14,7 @@ let speed = DEFAULT_SPEED;
 let targetSpeed = DEFAULT_SPEED;
 let particles = [];
 
-window.addEventListener('load', function() {
+function addStars() {
     canvas = document.getElementById('c');
     
     let resize = function() {
@@ -53,7 +53,7 @@ window.addEventListener('load', function() {
     }, false);
     
     setInterval(loop, 1000 / 60);
-}, false);
+}
 
 function loop() {
     context.save();

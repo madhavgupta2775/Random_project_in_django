@@ -19,12 +19,12 @@ body {
   
   ul {
     margin: 0;
-    background-color: var(--secondary-color);
+    background-color: transparent;
     color: var(--primary-color);
   }
 
   .list-group-item {
-    background-color: var(--secondary-color);
+    background-color: transparent;
     font-size: medium;
   }
   
