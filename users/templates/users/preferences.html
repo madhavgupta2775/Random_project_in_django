@@ -76,7 +76,9 @@
     {
         let color_picker = $("#colorpicker");
         let color = color_picker.val();
-        theme_color_input.val("[" + convertHexColorToHSL(color) + "]");
+        let primary = convertHexColorToHSL(color);
+        theme_color_input.val("[" + primary + "]");
+        updateColors(primary);
     }
 
      let combo_box_html = `
@@ -88,13 +90,13 @@
      `;
 
      let color_picker_html = `
-        <input type="color" id="colorpicker" class="d-none" value="#E1FF00">
+        <input type="color" id="colorpicker" class="d-none" style="width: 100%;" value="#E1FF00">
      `;
 
     let combo_box = $(combo_box_html);
 
     let color_picker = $(color_picker_html);
-    color_picker.on("change", updateThemeColorInputFromColorPicker);
+    color_picker.on("input", updateThemeColorInputFromColorPicker);
 
     function updateComboBoxFromThemeColorInput ()
     {

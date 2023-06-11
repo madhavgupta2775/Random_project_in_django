@@ -19,8 +19,42 @@
     {% else %}
         <title>Random Memo</title>
     {% endif %} -->
+    <script>
+      // grab primary color from local storage (array containing hue, saturation and lightness values. Then make primary colour that and secondary color darker version of that
+     function updateColors(primary) {
+      if (localStorage.getItem('primaryColor') === null) {
+        localStorage.setItem('primaryColor', JSON.stringify([Math.floor(Math.random() * 360), 100, 50]));
+      }
+      let primaryColor = JSON.parse(localStorage.getItem('primaryColor'));
+      let secondaryColor = [primaryColor[0], primaryColor[1], 5];
+      let tertiaryColor = [primaryColor[0], primaryColor[1], primaryColor[2] > 65 ? 40 : 90];
+ 
+      {% if request.user.is_authenticated %}
+       {% if request.user.preferences.theme_color ==  "default" %}
+         primaryColor = [182.22, 53.47, 39.61]; //JSON.parse('{{ request.user.preferences.theme_color }}');
+         secondaryColor = [235.56, 72.97, 7.25];
+         tertiaryColor = [268.06, 95.88, 61.96];
+       {% elif request.user.preferences.theme_color != "random" %}
+         primaryColor = JSON.parse('{{ request.user.preferences.theme_color }}');
+         secondaryColor = [primaryColor[0], primaryColor[1], 5];
+         tertiaryColor = [primaryColor[0], primaryColor[1], primaryColor[2] > 65 ? 40 : 90];
+       {% endif %}
+      {% endif %}
+ 
+      if (primary !== undefined) {
+        primaryColor = primary;
+        secondaryColor = [primaryColor[0], primaryColor[1], 5];
+        tertiaryColor = [primaryColor[0], primaryColor[1], primaryColor[2] > 65 ? 40 : 90];
+      }
+ 
+      document.body.style.setProperty('--primary-color', `hsl(${primaryColor[0]}, ${primaryColor[1]}%, ${primaryColor[2]}%)`); //${primaryColor[2]}
+      document.body.style.setProperty('--secondary-color', `hsl(${secondaryColor[0]}, ${secondaryColor[1]}%, ${secondaryColor[2]}%)`);
+       document.body.style.setProperty('--tertiary-color', `hsl(${tertiaryColor[0]}, ${tertiaryColor[1]}%, ${tertiaryColor[2]}%)`);
+     }
+    </script>
 </head>
 <body>
+  <script>updateColors();</script>
     {% block matrix %}{% endblock %}
     <div id="d-fade" class="{% block d-fade-class %}{% endblock %}">
       <header class="site-header">
@@ -73,35 +107,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <script>
-     // grab primary color from local storage (array containing hue, saturation and lightness values. Then make primary colour that and secondary color darker version of that
-     
-     if (localStorage.getItem('primaryColor') === null) {
-       localStorage.setItem('primaryColor', JSON.stringify([Math.floor(Math.random() * 360), 100, 50]));
-     }
-     let primaryColor = JSON.parse(localStorage.getItem('primaryColor'));
-     let secondaryColor = [primaryColor[0], primaryColor[1], 5];
-     let tertiaryColor = [primaryColor[0], primaryColor[1], primaryColor[2] > 65 ? 40 : 90];
-
-     {% if request.user.is_authenticated %}
-      {% if request.user.preferences.theme_color ==  "default" %}
-        primaryColor = [182.22, 53.47, 39.61]; //JSON.parse('{{ request.user.preferences.theme_color }}');
-        secondaryColor = [235.56, 72.97, 7.25];
-        tertiaryColor = [268.06, 95.88, 61.96];
-      {% elif request.user.preferences.theme_color != "random" %}
-        primaryColor = JSON.parse('{{ request.user.preferences.theme_color }}');
-        secondaryColor = [primaryColor[0], primaryColor[1], 5];
-        tertiaryColor = [primaryColor[0], primaryColor[1], primaryColor[2] > 65 ? 40 : 90];
-      {% endif %}
-     {% endif %}
-
-     
-
-     document.body.style.setProperty('--primary-color', `hsl(${primaryColor[0]}, ${primaryColor[1]}%, ${primaryColor[2]}%)`); //${primaryColor[2]}
-     document.body.style.setProperty('--secondary-color', `hsl(${secondaryColor[0]}, ${secondaryColor[1]}%, ${secondaryColor[2]}%)`);
-      document.body.style.setProperty('--tertiary-color', `hsl(${tertiaryColor[0]}, ${tertiaryColor[1]}%, ${tertiaryColor[2]}%)`);
-
-    </script>
+    <script>updateColors();</script>
 
     {% block scripts %}
     {% endblock %}
