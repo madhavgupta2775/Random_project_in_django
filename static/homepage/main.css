@@ -266,13 +266,13 @@ button:hover {
   cursor: pointer;
 }
 
-input {
+/* input {
   background-color: #1d2022;
   color: #ffffff;
   padding: none;
   border-radius: 2px;
   border: none;
-}
+} */
 
 .showLeft {
   /* background-color: #0d77b6 !important;
