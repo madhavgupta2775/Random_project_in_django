@@ -13,7 +13,7 @@
             <a href="{% url 'user_memos' pk=user.pk %}">Memos posted</a>
             <!-- <p class="text-secondary">{{ user.profile.bio }}</p> -->
         </div>
-        {% if request.user == user or request.user.is_superuser %}
+        {% if request.user == user %}
             <!-- Three dot menu -->
             <div class="dropdown">
                 <!-- Three dots icon -->
