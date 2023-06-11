@@ -14,7 +14,7 @@ body {
   }
 
   a:hover {
-    color: #9841fb;
+    color: var(--tertiary-color);
   }
   
   ul {
@@ -37,7 +37,7 @@ body {
   }
   
   .site-header .navbar-nav .nav-link:hover {
-    color: #9841fb;
+    color: var(--tertiary-color);
   }
   
   .site-header .navbar-nav .nav-link.active {
@@ -58,7 +58,7 @@ body {
   }
   
   a.article-title:hover {
-    color: #9841fb;
+    color: var(--tertiary-color);
     text-decoration: none;
   }
   
@@ -80,7 +80,7 @@ body {
   }
   
   .article-metadata a:hover {
-    color: #9841fb;
+    color: var(--tertiary-color);
     text-decoration: none;
   }
   
@@ -274,4 +274,20 @@ body {
   
   .show {
     display: block;
+  }
+
+  .btn-info {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+  }
+  
+  .btn-outline-info {
+    border-color: var(--primary-color) !important;
+    color: var(--primary-color) !important;
+  }
+  
+  .btn-outline-info:hover {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: #ffffff !important;
   }
