@@ -22,7 +22,7 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['image', 'bio', 'show_email']
+        fields = ['image', 'bio']
 
 class PreferencesUpdateForm(forms.ModelForm):
     theme_color = forms.CharField(max_length=20, required=True, label="Theme Color")                                  
